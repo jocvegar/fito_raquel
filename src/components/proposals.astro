@@ -1,0 +1,73 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon/components";
+import Container from "./container.astro";
+
+const features = [
+  {
+    title: "Escucha Activa",
+    description:
+      "Fito te escucha. Cree en el poder de las ideas ciudadanas para transformar Honduras desde el Congreso.",
+    icon: "bx:bxs-user-voice",
+  },
+  {
+    title: "Educación con Propósito",
+    description:
+      "Formado en La Salle y UNITEC, Fito apuesta por una educación accesible y de calidad para todos.",
+    icon: "bx:bxs-graduation",
+  },
+  {
+    title: "Transparencia Primero",
+    description:
+      "Un compromiso claro: cero corrupción, rendición de cuentas y decisiones con integridad.",
+    icon: "bx:bxs-shield",
+  },
+  {
+    title: "Desarrollo Local",
+    description:
+      "Impulso a pequeñas empresas, emprendedores y proyectos comunitarios en barrios y colonias.",
+    icon: "bx:bxs-briefcase-alt",
+  },
+  {
+    title: "Juventud con Futuro",
+    description:
+      "Fito representa una nueva generación política que quiere construir, no dividir.",
+    icon: "bx:bxs-group",
+  },
+  {
+    title: "Cercanía Real",
+    description:
+      "Fito es el de la gorra azul. Está donde tú estás: en la calle, en el parque, en tu barrio.",
+    icon: "bx:bxs-map",
+  },
+];
+---
+
+<section id="proposals" class='bg-blue-50 py-8'>
+  <Container>
+    <div class="py-8">
+      <h2 class="text-4xl lg:text-5xl font-bold text-blue-900 lg:tracking-tight">
+        Una propuesta con propósito
+      </h2>
+      <p class="text-lg mt-4 text-blue-900">
+        Fito Ráquel es un joven comprometido con Honduras. Estas son sus bases para representarte con valentía y honestidad en el Congreso Nacional.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
+      {
+        features.map((item) => (
+          <div class="flex gap-4 items-start">
+            <div class="mt-1 bg-blue-900 rounded-full p-2 w-8 h-8 shrink-0">
+              <Icon class="text-white" name={item.icon} />
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-blue-900">{item.title}</h3>
+              <p class="text-blue-800 mt-2 leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>
