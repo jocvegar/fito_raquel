@@ -31,7 +31,7 @@ const makeTitle = title
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
 
     <SEO
@@ -48,7 +48,7 @@ const makeTitle = title
           url: canonicalURL,
           type: "website",
           title: makeTitle,
-          image: resolvedImageWithDomain,
+          image: `${resolvedImageWithDomain}?v=2`,
         },
         image: {
           alt: "Fito Ráquel - Diputado por Honduras",
