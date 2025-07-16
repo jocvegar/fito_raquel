@@ -17,5 +17,4 @@ export default defineConfig({
     },
   },
   compress: true,
-  output: "static",
 });
