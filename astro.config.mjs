@@ -10,11 +10,6 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), icon()],
   vite: {
     plugins: [tailwindcss()],
-    build: {
-      minify: "terser",
-      cssMinify: true,
-      sourcemap: false,
-    },
   },
   compress: true,
 });
