@@ -28,7 +28,7 @@ const makeTitle = title
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="pn">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -68,7 +68,9 @@ const makeTitle = title
     </style>
     <script>
       import AOS from "aos";
-      AOS.init();
+      AOS.init({
+        once: true,
+      });
     </script>
   </body>
 </html>

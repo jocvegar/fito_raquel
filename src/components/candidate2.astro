@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import candidateImage from "@/assets/hadwin.jpg";
+import { Icon } from "astro-icon/components";
+import Container from "./container.astro";
+
+const facts = [
+  {
+    titulo: "Dato 1",
+    texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+  {
+    titulo: "Dato 2",
+    texto: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    titulo: "Dato 3",
+    texto: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+  },
+  {
+    titulo: "Dato 4",
+    texto: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+  },
+  {
+    titulo: "Dato 5",
+    texto: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+  },
+];
+
+---
+<section class="text-gray-600 body-font bg-blue-50">
+  <Container>
+    <div class="container px-5 py-16 mx-auto flex flex-wrap">
+      <div class="flex flex-wrap w-full mb-10 flex-col items-center text-center">
+        <h1 data-aos="fade-up" class="sm:text-4xl text-2xl font-medium title-font mb-2 text-primary">Hadwin Aguilar</h1>
+        <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table.</p>
+      </div>
+
+      <div class="flex flex-wrap w-full">
+        <div class="md:order-1 lg:w-2/5 md:w-1/2 md:pl-10 md:py-6">
+          {facts.map((item, index) => (
+            <div class={`flex relative ${index !== facts.length - 1 ? 'pb-12' : ''}`}>
+              <div class="h-full w-16 absolute inset-0 flex items-center justify-center">
+                <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+              </div>
+              <div data-aos="fade-up" data-aos-delay={(index+1) * 50} class="flex-shrink-0 w-16 h-16 rounded-full bg-orange-500 inline-flex items-center justify-center text-white relative z-10">
+                <Icon class="text-white w-6 h-6" name="uil:check-square" />
+              </div>
+              <div class="flex-grow pl-4">
+                <h2 class="font-medium title-font text-sm text-primary mb-1 tracking-tight">
+                  {item.titulo}
+                </h2>
+                <p class="text-lg leading-relaxed">{item.texto}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <Image class="lg:w-3/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12" src={candidateImage} alt="Fito" />
+      </div>
+    </div>
+  </Container>
+</section>
