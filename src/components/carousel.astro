@@ -1,39 +1,32 @@
 ---
+import { Image } from "astro:assets";
+import car1 from "@/assets/car_1.jpg";
+import car2 from "@/assets/car_2.jpg";
+import car3 from "@/assets/car_3.jpg";
+import car4 from "@/assets/car_4.jpg";
+import car5 from "@/assets/car_5.jpg";
+import car6 from "@/assets/car_6.jpg";
+
 const items = [
-  {
-    src: "https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp",
-    alt: "Pizza",
-  },
-  {
-    src: "https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp",
-    alt: "Pizza",
-  },
-  {
-    src: "https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp",
-    alt: "Pizza",
-  },
-  {
-    src: "https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp",
-    alt: "Pizza",
-  },
-  {
-    src: "https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp",
-    alt: "Pizza",
-  },
-  {
-    src: "https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp",
-    alt: "Pizza",
-  },
-  {
-    src: "https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp",
-    alt: "Pizza",
-  },
+  { src: car1, alt: "Fito Diputado" },
+  { src: car2, alt: "Fito Diputado" },
+  { src: car3, alt: "Fito Diputado" },
+  { src: car4, alt: "Fito Diputado" },
+  { src: car5, alt: "Fito Diputado" },
+  { src: car6, alt: "Fito Diputado" },
 ];
 ---
-<div class="carousel carousel-center bg-white flex">
-  {items.map((item) => (
+
+<div class="carousel carousel-center bg-white flex space-x-4 p-4 overflow-x-auto">
+  {items.map((item, index) => (
     <div class="carousel-item">
-      <img src={item.src} alt={item.alt} />
+      <Image
+        src={item.src}
+        alt={item.alt}
+        width={item.src.width}
+        height={item.src.height}
+        class="rounded-lg w-64 h-auto object-cover"
+      />
     </div>
   ))}
 </div>
