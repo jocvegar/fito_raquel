@@ -2,6 +2,7 @@
 // @ts-ignore
 import { Icon } from "astro-icon/components";
 import Container from "./container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
 
 const features = [
   {
@@ -45,23 +46,22 @@ const features = [
 
 <section id="proposals" class='bg-blue-50 pt-8 pb-20'>
   <Container>
-
-    <div class="py-8 flex flex-wrap w-full mb-20 flex-col items-center text-center">
-      <h1 data-aos="fade-up" class="sm:text-3xl text-2xl font-medium title-font mb-2 text-primary"> Una propuesta con propósito</h1>
-      <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">
+    <Sectionhead>
+      <Fragment slot="title">Una propuesta con propósito</Fragment>
+      <Fragment slot="desc">
         Fito Ráquel es un joven comprometido con Honduras. Estas son sus bases para representarte con valentía y honestidad en el Congreso Nacional.
-      </p>
-    </div>
+      </Fragment>
+    </Sectionhead>
 
     <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
       {
         features.map((item, index) => (
           <div class="flex gap-4 items-start">
-            <div data-aos="fade-up" data-aos-delay={(index+1) * 50} class="mt-1 bg-orange-500 rounded-full p-2 w-8 h-8 shrink-0">
+            <div data-aos="fade-up" data-aos-delay={(index+1) * 50} class="mt-1 bg-accent rounded-full p-2 w-8 h-8 shrink-0">
               <Icon class="text-white" name={item.icon} />
             </div>
             <div>
-              <h3 class="font-semibold text-xl text-primary">{item.title}</h3>
+              <h3 class="font-semibold text-2xl text-primary">{item.title}</h3>
               <p class="text-blue-800 mt-2 leading-relaxed">{item.description}</p>
             </div>
           </div>
