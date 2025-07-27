@@ -1,0 +1,40 @@
+---
+import { Picture } from "astro:assets";
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import familia from "@/assets/familia.jpg"
+---
+
+<section id="familia">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Familia</Fragment>
+      <Fragment slot="desc">Mi tesoro más preciado</Fragment>
+    </Sectionhead>
+
+    <div class="grid sm:grid-cols-2 gap-10 mx-auto pt-8 pb-20">
+      <div class="relative">
+        <div class="absolute hidden md:block w-96 h-96 bg-blue-100 rounded-full right-0 top-1/3 -z-10"></div>
+        <div class="absolute hidden md:block w-44 h-44 bg-blue-100 rounded-full left-10 top-1/4 -z-10"></div>
+        <Picture
+          src={familia}
+          alt='familia'
+          sizes="(max-width: 800px) 100vw, 400px"
+          width={1270}
+          height={1652}
+          class="rounded-xl w-full max-w-md mx-auto shadow-2xl"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="place-self-center">
+        <h2 class="text-5xl text-primary -mt-2">
+          Algo
+        </h2>
+        <p class="text-lg max-w-xl mt-4 leading-relaxed text-secondary">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum nam recusandae ad sint expedita voluptatem unde natus dicta! Soluta facere accusamus quia saepe nisi doloremque, unde suscipit voluptas quisquam.
+        </p>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -5,24 +5,30 @@ import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 const menuitems = [
-  // {
-  //   title: "Features",
-  //   path: "#",
-  //   children: [
-  //     { title: "Action", path: "/" },
-  //     { title: "Another action", path: "#" },
-  //     { title: "Dropdown Submenu", path: "#" },
-  //     { title: "404 Page", path: "/404" },
-  //   ],
-  // },
   {
     title: "Propuestas",
-    path: "#proposals",
+    path: "#propuestas",
   },
   {
     title: "Sumate",
-    path: "#cta",
+    path: "#sumate",
   },
+  {
+    title: "Acerca",
+    path: "#",
+    children: [
+      { title: "Adolfo", path: "#adolfo" },
+      { title: "Hadwin", path: "#hadwin" }
+    ],
+  },
+  {
+    title: "Familia",
+    path: "#familia",
+  },
+  {
+    title: "Equipo",
+    path: "#equipo",
+  }
   // {
   //   title: "Blog",
   //   path: "/blog",

@@ -44,7 +44,7 @@ const features = [
 ];
 ---
 
-<section id="proposals" class='bg-blue-50 pt-8 pb-20'>
+<section id="propuestas" class='bg-blue-50 pt-8 pb-20'>
   <Container>
     <Sectionhead>
       <Fragment slot="title">Una propuesta con propósito</Fragment>
@@ -57,8 +57,8 @@ const features = [
       {
         features.map((item, index) => (
           <div class="flex gap-4 items-start">
-            <div data-aos="fade-up" data-aos-delay={(index+1) * 50} class="mt-1 bg-accent rounded-full p-2 w-8 h-8 shrink-0">
-              <Icon class="text-white" name={item.icon} />
+            <div data-aos="fade-up" data-aos-delay={(index+1) * 50} class="flex-shrink-0 w-12 h-12 rounded-full bg-accent inline-flex items-center justify-center text-white relative z-10">
+              <Icon class="text-white w-6 h-6 " name={item.icon} />
             </div>
             <div>
               <h3 class="font-semibold text-2xl text-primary">{item.title}</h3>
