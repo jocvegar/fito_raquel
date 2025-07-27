@@ -6,7 +6,7 @@ import Container from "./container.astro";
 
 <Container>
   <main id="hero" class="grid lg:grid-cols-2 place-items-center py-8 md:py-2">
-    <div class="order-1 pt-4 md:pt-1">
+    <div class="order-1 pt-4 md:pt-1 hidden md:block">
       <Picture
         src={heroImage}
         alt="Fito Ráquel"
@@ -17,16 +17,16 @@ import Container from "./container.astro";
       />
     </div>
     <div>
-      <h1 class="uppercase text-4xl lg:text-5xl xl:text-6xl font-bold text-primary text-justify md:text-left">
-        Fito, el de la gorra azul, caminando con vos
+      <h1 class="uppercase text-4xl lg:text-5xl xl:text-6xl font-bold text-primary text-center md:text-left">
+        Con vos, para vos <br> Fito y la gorra azul
       </h1>
       <p class="text-lg lg:text-2xl mt-4 text-accent max-w-xl text-center md:text-left">
         Está aquí para escucharte, servirte y representar tus ideas en el Congreso Nacional.
       </p>
       <div class="mt-6 flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
         <button data-aos="fade-up" class="btn btn-lg btn-primary rounded-full">
-          <a href="/sumate">
-            Sumate
+          <a href="#propuestas">
+            Conocé mis propuestas
           </a>
         </button>
         <a data-aos="fade-up" href="#footer" class="link link-primary text-lg font-medium">
