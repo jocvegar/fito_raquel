@@ -3,16 +3,18 @@ import Container from "@/components/container.astro";
 import Link from "@/components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { Image } from "astro:assets";
+import logo from "@/assets/logo.png"
 
 const menuitems = [
   {
-    title: "Propuestas",
-    path: "#propuestas",
+    title: "Cualidades",
+    path: "#cualidades",
   },
-  {
-    title: "Sumate",
-    path: "#sumate",
-  },
+  // {
+  //   title: "Sumate",
+  //   path: "#sumate",
+  // },
   {
     title: "Acerca",
     path: "#",
@@ -24,19 +26,7 @@ const menuitems = [
   {
     title: "Familia",
     path: "#familia",
-  },
-  {
-    title: "Equipo",
-    path: "#equipo",
   }
-  // {
-  //   title: "Blog",
-  //   path: "/blog",
-  // },
-  // {
-  //   title: "Contact",
-  //   path: "/contact",
-  // }
 ];
 ---
 
@@ -45,8 +35,7 @@ const menuitems = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-2xl md:text-4xl">
-          <span class="font-bold text-blue-900 tracking-tight">Fito</span>
-          <span class="text-blue-300 tracking-tighter">Diputado</span>
+          <Image src={logo} alt="logo" width="120" height="120" />
         </a>
         <div class="block lg:hidden">
           <MenuIcon class="w-4 h-4 text-blue-800" />
@@ -78,17 +67,17 @@ const menuitems = [
             ))
           }
         </ul>
-        <!-- <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" style="muted" block size="md">Log in</Link>
-          <Link href="#" size="md" block>Sign up</Link>
-        </div> -->
+        <div class="lg:hidden flex items-center mt-3 gap-4">
+          <!-- <Link href="#" style="muted" block size="md">Log in</Link> -->
+          <Link href="#" size="md" block>Sumate</Link>
+        </div>
       </MenuItems>
     </Astronav>
-    <!-- <div>
+    <div>
       <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
+        <!-- <a href="#">Log in</a> -->
+        <Link href="#" size="md">Sumate</Link>
       </div>
-    </div> -->
+    </div>
   </Container>
 </header>

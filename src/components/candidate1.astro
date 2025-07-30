@@ -1,39 +1,41 @@
 ---
 import { Image } from "astro:assets";
-import candidateImage from "@/assets/fito.jpg";
+// import candidateImage from "@/assets/fito2.png";
+import candidateImage from "@/assets/fito1.png";
 import { Icon } from "astro-icon/components";
 import Container from "./container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
 
 const facts = [
   {
-    texto: "Licenciado en Administración de Empresas",
-    icon: "bx:briefcase-alt"
-  },
-  {
-    texto: "Amante de la cocina",
-    icon: "uil:utensils"
-  },
-  {
     texto: "Master en Dirección de Proyectos",
+    subtexto: "La Salle, Universitat Ramon Llull",
     icon: "uil:award"
   },
   {
+    texto: "Licenciado en Administración de Empresas",
+    subtexto: "Universidad Tecnológica Centroamericana",
+    icon: "bx:briefcase-alt"
+  },
+  {
     texto: "Dedicado al rubro de construcción con mi familia",
+    subtexto: "Trabajo familiar",
     icon: "bx:building-house"
   },
   {
-    texto: "Tuve un restaurante llamado Fito's",
-    icon: "uil:restaurant"
+    texto: "Católico",
+    subtexto: "Fe y valores",
+    icon: "bx:church"
   },
   {
-    texto: "Católico",
-    icon: "bx:church"
+    texto: "Padre, hijo, esposo y amigo",
+    subtexto: "Familia primero",
+    icon: "bx:user"
   }
 ];
 ---
 
-<section id="adolfo" class="bg-gray-50 pt-8 pb-20">
+<section id="adolfo" class="bg-gray-50 py-8">
   <Container>
     <div class="container px-5 mx-auto flex flex-wrap">
       <div class="w-full text-center">
@@ -42,7 +44,7 @@ const facts = [
           <Fragment slot="desc">Fito es un joven comprometido con su comunidad. Apasionado por la educación, emprendedor social y defensor de una política transparente y humana.</Fragment>
         </Sectionhead>
       </div>
-      <div class="flex flex-wrap w-full pt-16">
+      <div class="flex flex-wrap w-full pt-8 justify-between">
         <div class="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
           {facts.map((item, index) => (
             <div class={`flex items-center relative ${index !== facts.length - 1 ? 'pb-12' : ''}`}>
@@ -50,13 +52,15 @@ const facts = [
                 <Icon class="text-white w-6 h-6" name={item.icon} />
               </div>
               <div class="flex-grow pl-4">
+                <h2 class="font-medium title-font text-sm text-gray-900">{item.subtexto}</h2>
                 <p class="text-lg text-primary font-medium">{item.texto}</p>
               </div>
             </div>
           ))}
         </div>
-
-        <Image class="lg:w-3/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12" src={candidateImage} alt="Fito" />
+        <div class="lg:w-1/2 md:w-2/5 max-w-md mx-auto">
+          <Image class="object-cover object-center rounded-lg md:mt-0 mt-12 w-full" src={candidateImage} alt="Fito" />
+        </div>
       </div>
     </div>
   </Container>

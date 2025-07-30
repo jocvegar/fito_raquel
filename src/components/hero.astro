@@ -1,39 +1,47 @@
 ---
 import { Picture } from "astro:assets";
-import heroImage from "@/assets/hero.png";
-import Container from "./container.astro";
+import heroBackground from "@/assets/hero_background.jpg";
+import heroFito from "@/assets/hero_fito.png";
 ---
 
-<Container>
-  <main id="hero" class="grid lg:grid-cols-2 place-items-center py-8 md:py-2">
-    <div class="order-1 pt-4 md:pt-1">
+<section class="relative w-full h-[90vh] overflow-hidden">
+  <Picture
+    src={heroBackground}
+    alt="Ciudad"
+    widths={[640, 1024, 1920]}
+    sizes="100vw"
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="lazy"
+    format="avif"
+  />
+  <div class="absolute inset-0 bg-black/70"></div>
+  <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center justify-between px-4 lg:px-8">
+    <div class="text-white max-w-xl space-y-4">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        <span class="text-accent">FITO RAQUEL</span><br />
+        UNA VOZ JOVEN,<br />
+        HONESTA Y VALIENTE<br />
+        PARA EL CONGRESO
+      </h1>
+      <p class="text-lg md:text-xl">
+        Educación, Emprendimiento y Transparencia como pilares del cambio.
+      </p>
+      <button data-aos="fade-up" class="btn btn-lg btn-accent rounded-full">
+        <a href="#cualidades">
+          Conocé Más
+        </a>
+      </button>
+    </div>
+    <div class="hidden md:block w-[40%] -mr-24">
       <Picture
-        src={heroImage}
+        src={heroFito}
         alt="Fito Ráquel"
+        class="w-full h-auto object-contain"
         widths={[150, 300, 450]}
         sizes="(max-width: 800px) 100vw, 450px"
         loading="eager"
         format="avif"
       />
     </div>
-    <div>
-      <h1 class="uppercase text-3xl lg:text-4xl xl:text-5xl font-bold text-primary text-center md:text-left">
-        Fito Raquel <br> Una voz joven, honesta y valiente para el Congreso
-      </h1>
-      <p class="text-lg lg:text-2xl mt-4 text-accent max-w-xl text-center md:text-left">
-Educación, Emprendimiento y Transparencia como pilares del cambio.
-      </p>
-      <div class="mt-6 flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-        <button data-aos="fade-up" class="btn btn-lg btn-primary rounded-full">
-          <a href="#propuestas">
-            Conocé mis propuestas
-          </a>
-        </button>
-        <a data-aos="fade-up" href="#footer" class="link link-primary text-lg font-medium">
-          Seguir en redes
-        </a>
-      </div>
-    </div>
-  </main>
-</Container>
-
+  </div>
+</section>

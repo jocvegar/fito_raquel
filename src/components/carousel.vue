@@ -6,7 +6,6 @@ import car2 from "@/assets/car_2.jpg";
 import car3 from "@/assets/car_3.jpg";
 import car4 from "@/assets/car_4.jpg";
 import car5 from "@/assets/car_5.jpg";
-import car6 from "@/assets/car_6.jpg";
 
 const images = [
   { src: car1.src, alt: "Fito Diputado" },
@@ -14,7 +13,6 @@ const images = [
   { src: car3.src, alt: "Fito Diputado" },
   { src: car4.src, alt: "Fito Diputado" },
   { src: car5.src, alt: "Fito Diputado" },
-  { src: car6.src, alt: "Fito Diputado" },
 ];
 
 const config = {
@@ -32,7 +30,7 @@ const config = {
 </script>
 
 <template>
-  <Carousel v-bind="config">
+  <Carousel v-bind="config" class="py-8">
     <Slide v-for="(image, index) in images" :key="index">
       <img :src="image.src" :alt="image.alt" />
     </Slide>

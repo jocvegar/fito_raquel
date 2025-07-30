@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 @plugin "daisyui";
-
 @plugin "daisyui/theme" {
   name: "pn";
   default: false;
@@ -36,10 +35,11 @@
   --depth: 1;
   --noise: 0;
 }
+@import "@fontsource/montserrat";
 
 @theme {
-  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 /*
@@ -57,5 +57,8 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+  }
+  body {
+    @apply font-sans;
   }
 }

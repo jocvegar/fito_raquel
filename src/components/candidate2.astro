@@ -1,60 +1,64 @@
 ---
 import { Image } from "astro:assets";
-import candidateImage from "@/assets/hadwin.jpg";
+import candidateImage from "@/assets/hadwin2.png";
 import { Icon } from "astro-icon/components";
 import Container from "./container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
 
 const facts = [
   {
-    titulo: "Dato 1",
-    texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    subtexto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    icon: "uil:award"
   },
   {
-    titulo: "Dato 2",
-    texto: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    subtexto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    icon: "bx:briefcase-alt"
   },
   {
-    titulo: "Dato 3",
-    texto: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    subtexto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    icon: "bx:building-house"
   },
   {
-    titulo: "Dato 4",
-    texto: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    subtexto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    icon: "bx:church"
   },
   {
-    titulo: "Dato 5",
-    texto: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
-  },
+    texto: "Padre, hijo, esposo y amigo",
+    subtexto: "Familia primero",
+    icon: "bx:user"
+  }
 ];
-
 ---
-<section id="hadwin" class="bg-blue-50 pt-8 pb-20">
+<section id="hadwin" class="bg-blue-50 py-8">
   <Container>
     <div class="container px-5 mx-auto flex flex-wrap">
       <div class="w-full text-center">
         <Sectionhead>
           <Fragment slot="title">¿Quién es Hadwin Aguilar?</Fragment>
-          <Fragment slot="desc"></Fragment>
+          <Fragment slot="desc">El Dr. Hadwin es...</Fragment>
         </Sectionhead>
       </div>
-
-      <div class="flex flex-wrap w-full pt-16">
-        <div class="md:order-1 lg:w-2/5 md:w-1/2 md:pl-10 md:py-6">
+      <div class="flex flex-wrap w-full pt-8 justify-between">
+        <div class="md:order-1 lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
           {facts.map((item, index) => (
-            <div class={`flex relative ${index !== facts.length - 1 ? 'pb-12' : ''}`}>
+            <div class={`flex items-center relative ${index !== facts.length - 1 ? 'pb-12' : ''}`}>
               <div data-aos="fade-up" data-aos-delay={(index+1) * 50} class="flex-shrink-0 w-12 h-12 rounded-full bg-accent inline-flex items-center justify-center text-white relative z-10">
-                <Icon class="text-white w-6 h-6" name="uil:check-square" />
+                <Icon class="text-white w-6 h-6" name={item.icon} />
               </div>
               <div class="flex-grow pl-4">
-                <p class="text-lg text-secondary font-medium">{item.texto}</p>
+                <h2 class="font-medium title-font text-sm text-gray-900">{item.subtexto}</h2>
+                <p class="text-lg text-primary font-medium">{item.texto}</p>
               </div>
             </div>
           ))}
         </div>
-
-        <Image class="lg:w-3/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12" src={candidateImage} alt="Fito" />
+        <Image class="lg:w-1/2 md:w-2/5 object-cover object-center rounded-lg md:mt-0 mt-12" src={candidateImage} alt="Hadwin"/>
       </div>
     </div>
   </Container>
 </section>
+

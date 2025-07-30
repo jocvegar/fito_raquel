@@ -1,24 +1,22 @@
 ---
 import Cta from "@/components/cta.astro";
-import Proposals from "@/components/proposals.astro";
+import Traits from "@/components/traits.astro";
 import Hero from "@/components/hero.astro";
-import Banner from "@/components/banner.astro";
+import Sticker from "@/components/sticker.astro";
 import Candidate1 from "@/components/candidate1.astro";
 import Candidate2 from "@/components/candidate2.astro";
 import Carousel from "@/components/carousel.vue";
 import Family from "@/components/family.astro";
-import Team from "@/components/team.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Inicio">
   <Hero />
-  <Proposals />
-  <Banner />
+  <Traits />
+  <Sticker />
   <Candidate1 />
   <Candidate2 />
   <Carousel client:load />
   <Family />
-  <Team />
   <Cta />
 </Layout>
