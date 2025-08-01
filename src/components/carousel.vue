@@ -1,14 +1,14 @@
 <script setup>
 import "vue3-carousel/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-import car1 from "@/assets/car_1.jpg";
+// import car1 from "@/assets/car_1.jpg";
 import car2 from "@/assets/car_2.jpg";
 import car3 from "@/assets/car_3.jpg";
 import car4 from "@/assets/car_4.jpg";
 import car5 from "@/assets/car_5.jpg";
 
 const images = [
-  { src: car1.src, alt: "Fito Diputado" },
+  // { src: car1.src, alt: "Fito Diputado" },
   { src: car2.src, alt: "Fito Diputado" },
   { src: car3.src, alt: "Fito Diputado" },
   { src: car4.src, alt: "Fito Diputado" },
