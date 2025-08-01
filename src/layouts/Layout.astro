@@ -13,8 +13,6 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
-console.log('canonicalURL :>> ', canonicalURL);
-
 const resolvedImageWithDomain = new URL(
   "/opengraph_v2.jpg",
   Astro.site

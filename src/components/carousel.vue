@@ -20,11 +20,10 @@ const config = {
   height: 500,
   gap: 5,
   autoplay: 2000,
-  mouseWheel: true,
   breakpoints: {
-    1024: { itemsToShow: 3 },
-    768: { itemsToShow: 2 },
-    480: { itemsToShow: 1 },
+    1024: { itemsToShow: 3, mouseWheel: false },
+    768: { itemsToShow: 2, mouseWheel: true },
+    480: { itemsToShow: 1, mouseWheel: true },
   },
 };
 </script>

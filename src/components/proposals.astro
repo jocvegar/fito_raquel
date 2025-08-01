@@ -1,0 +1,131 @@
+---
+import Container from "./container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import { Icon } from "astro-icon/components";
+
+const proposals = [
+  {
+    title: 'Fondo Nacional de Cultura, Deporte y Arte',
+    title_icon: 'uil:palette',
+    subtitle: 'Destinar el 2% del ISV del tabaco y alcohol para financiar programas culturales, deportivos y artísticos enfocados en niñez y juventud.',
+    link: '/propuestas/cultura-deporte-y-arte',
+    items: [
+      {
+        title: 'Fortalecimiento de centros deportivos y culturales',
+        title_icon: 'bx:football',
+      },
+      {
+        title: 'Prevención de consumo de drogas y alcohol',
+        title_icon: 'uil:shield-check',
+      },
+      {
+        title: 'Reducción de violencia juvenil y riesgo social',
+        title_icon: 'uil:users-alt',
+      },
+    ]
+  },
+  {
+    title: 'Nueva Ley de Empleo por Hora',
+    title_icon: 'uil:briefcase-alt',
+    subtitle: 'Empleo digno, flexible y formal para jóvenes, madres solteras y adultos mayores, con todos los derechos laborales garantizados.',
+    link: '/propuestas/empleo-por-hora',
+    items: [
+      {
+        title: 'Reducción del desempleo juvenil',
+        title_icon: 'uil:chart-line',
+      },
+      {
+        title: 'Oportunidades para madres solteras y adultos mayores',
+        title_icon: 'uil:users-alt',
+      },
+      {
+        title: 'Formalización de empleos informales',
+        title_icon: 'uil:clipboard-notes',
+      }
+    ]
+  },
+  {
+    title: 'Transformar y Descentralizar el INFOP',
+    title_icon: 'uil:building',
+    subtitle:
+      'Convertir el INFOP en una verdadera red nacional de formación técnica descentralizada hacia comunidades rurales, alineada con el mercado laboral real.',
+    link: '/propuestas/transformar-y-descentralizar-el-infop',
+    items: [
+      {
+        title: 'Centros móviles y sedes regionales accesibles',
+        title_icon: 'uil:bus-school',
+      },
+      {
+        title: 'Formación técnica ligada a sectores clave',
+        title_icon: 'uil:building',
+      },
+      {
+        title: 'Alianzas con empresas para contratar talento local',
+        title_icon: 'uil:user-arrows',
+      },
+    ],
+  },
+  {
+    title: 'Honduras Verde, Futuro Limpio',
+    title_icon: 'bx:leaf',
+    subtitle:
+      'Promover políticas verdes para reducir la contaminación, proteger el medio ambiente y construir una Honduras más limpia, sana y digna.',
+    link: '/propuestas/honduras-verde-futuro-limpio',
+    items: [
+      {
+        title: 'Incentivos a empresas con prácticas sostenibles',
+        title_icon: 'uil:building',
+      },
+      {
+        title: 'Campañas permanentes de educación ambiental',
+        title_icon: 'uil:megaphone',
+      },
+      {
+        title: 'Fondo verde para reciclaje, reforestación y empleo',
+        title_icon: 'bx:leaf',
+      },
+    ],
+  }
+]
+---
+
+<section id="propuestas" class='bg-blue-50 py-8'>
+
+<Container>
+   <Sectionhead>
+      <Fragment slot="title">Propuestas para un Futuro Mejor</Fragment>
+      <Fragment slot="desc"></Fragment>
+    </Sectionhead>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
+      {proposals.map((proposal) => (
+        <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-blue-100 text-left">
+          <div class="flex items-center mb-5">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-primary rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+              <Icon name={proposal.title_icon} width="26" height="26" />
+            </div>
+            <h3 class="ml-4 text-xl font-bold text-primary group-hover:text-secondary transition-colors">
+              {proposal.title}
+            </h3>
+          </div>
+          <p class="text-secondary mb-6 leading-relaxed">
+            {proposal.subtitle}
+          </p>
+          <ul class="space-y-3 mb-6 text-primary">
+            {proposal.items.map((item) => (
+            <li class="flex items-center gap-3">
+              <Icon name={item.title_icon} class="text-primary" width="22" />
+              <span>{item.title}</span>
+            </li>
+            ))}
+          </ul>
+          <a href={proposal.link} class="inline-flex items-center text-primary font-semibold group-hover:text-blue-600 transition-colors">
+            Leer más
+            <Icon name="bx:right-arrow-alt" class="ml-1" width="20" />
+          </a>
+        </div>
+      ))}
+    </div>
+
+</Container>
+</section>
