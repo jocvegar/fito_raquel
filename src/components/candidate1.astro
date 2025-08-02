@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import candidateImage from "@/assets/fito_main.jpg";
+import candidateImage from "@/assets/fito_main.jpeg";
 import { Icon } from "astro-icon/components";
 import Container from "./container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
@@ -17,7 +17,7 @@ const facts = [
     icon: "bx:briefcase-alt"
   },
   {
-    texto: "Dedicado al rubro de construcción con mi familia",
+    texto: "Dedicado al rubro de construcción",
     subtexto: "Trabajo familiar",
     icon: "bx:building-house"
   },
@@ -52,8 +52,8 @@ const facts = [
                   <Icon class="text-white w-6 h-6" name={item.icon} />
                 </div>
                 <div class="flex-grow pl-4">
-                    <h2 class="font-medium title-font text-sm text-gray-900">{item.subtexto}</h2>
-                    <p class="text-lg text-primary font-medium">{item.texto}</p>
+                    <h2 class="font-medium title-font text-xs md:text-sm text-gray-900">{item.subtexto}</h2>
+                    <p class="text-base mg:text-lg text-primary font-medium">{item.texto}</p>
                   </div>
               </div>
             </div>

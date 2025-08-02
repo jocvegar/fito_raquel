@@ -1,0 +1,29 @@
+---
+import { Picture } from "astro:assets";
+import heroBackground from "@/assets/hero_footer.jpeg";
+---
+
+<section class="relative w-full h-[90vh] overflow-hidden">
+  <Picture
+    src={heroBackground}
+    alt="Ciudad"
+    widths={[640, 1024, 1920]}
+    sizes="100vw"
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="lazy"
+    format="avif"
+  />
+  <div class="absolute inset-0 bg-black/70"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto h-full flex flex-col items-center justify-start mt-20 px-4 lg:px-8 text-center space-y-6">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+      ¡Es Ahora!
+    </h1>
+    <div class="bg-accent text-black px-6 py-3 rounded-full text-2xl font-bold shadow-lg">
+      Vota por Casilla 104
+    </div>
+    <p class="text-white text-lg md:text-xl max-w-lg">
+      Tu voto puede marcar la diferencia, no lo dejes pasar.
+    </p>
+  </div>
+</section>

@@ -7,6 +7,10 @@ import { Image } from "astro:assets";
 import logo from "@/assets/logo.png"
 
 const menuitems = [
+   {
+    title: "Inicio",
+    path: "/",
+  },
   {
     title: "Cualidades",
     path: "/#cualidades",
@@ -19,18 +23,18 @@ const menuitems = [
     title: "Hadwin",
     path: "/#hadwin",
   },
-  // {
-  //   title: "Acerca",
-  //   path: "#",
-  //   children: [
-  //     { title: "Adolfo", path: "/#adolfo" },
-  //     { title: "Hadwin", path: "/#hadwin" }
-  //   ],
-  // },
   {
-    title: "Propuestas",
-    path: "/propuestas",
-  }
+    title: "Conoce Más",
+    path: "#",
+    children: [
+      { title: "Misión", path: "#mision" },
+      { title: "Visión", path: "#vision" }
+    ],
+  },
+  // {
+  //   title: "Propuestas",
+  //   path: "/propuestas",
+  // }
 ];
 ---
 
@@ -73,14 +77,14 @@ const menuitems = [
         </ul>
         <div class="lg:hidden flex items-center mt-3 gap-4">
           <!-- <Link href="#" style="muted" block size="md">Log in</Link> -->
-          <Link href="#" size="md" block>Sumate</Link>
+          <Link href="/propuestas" size="md" block>Propuestas</Link>
         </div>
       </MenuItems>
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
         <!-- <a href="#">Log in</a> -->
-        <Link href="#" size="md">Sumate</Link>
+        <Link href="/propuestas" size="md">Propuestas</Link>
       </div>
     </div>
   </Container>
