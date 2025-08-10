@@ -1,0 +1,32 @@
+---
+import Carousel from "@/components/ui/carousel.vue";
+import car1 from "@/assets/car_1.jpeg";
+import car2 from "@/assets/car_2.jpeg";
+import car3 from "@/assets/car_3.jpg";
+import car4 from "@/assets/car_4.jpg";
+import car5 from "@/assets/car_5.jpg";
+import car6 from "@/assets/car_6.jpg";
+
+const images = [
+  { src: car1.src, alt: "Fito Diputado" },
+  { src: car2.src, alt: "Fito Diputado" },
+  { src: car3.src, alt: "Fito Diputado" },
+  { src: car4.src, alt: "Fito Diputado" },
+  { src: car5.src, alt: "Fito Diputado" },
+  { src: car6.src, alt: "Fito Diputado" },
+];
+
+const config = {
+  wrapAround: true,
+  height: 500,
+  gap: 5,
+  autoplay: 2000,
+  breakpoints: {
+    1024: { itemsToShow: 3, mouseWheel: false },
+    768: { itemsToShow: 2, mouseWheel: true },
+    480: { itemsToShow: 1, mouseWheel: true },
+  },
+};
+---
+
+<Carousel client:only images={images} config={config}/>
