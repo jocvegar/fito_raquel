@@ -1,8 +1,8 @@
 ---
-draft: false
+draft: true
 title: "Transformar y Descentralizar el INFOP"
 snippet: "Promover políticas verdes para reducir la contaminación, proteger el medio ambiente y construir una Honduras más limpia, sana y digna."
-order: 3
+order: 6
 ---
 
 Impulsaremos una transformación profunda del INFOP para que deje de ser un centro olvidado en las ciudades y se convierta en una verdadera red nacional de formación técnica, enfocada en las necesidades del mercado laboral y descentralizada hacia las comunidades rurales.
