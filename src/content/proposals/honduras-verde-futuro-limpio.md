@@ -1,7 +1,7 @@
 ---
 draft: false
 title: "Honduras Verde, Futuro Limpio"
-snippet: "Convertir el INFOP en una verdadera red nacional de formación técnica descentralizada hacia comunidades rurales, alineada con el mercado laboral real."
+snippet: "Promover políticas verdes para reducir la contaminación, proteger el medio ambiente y construir una Honduras más limpia, sana y digna."
 order: 4
 ---
 
