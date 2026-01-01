@@ -2,7 +2,6 @@
 import { Picture } from "astro:assets";
 import heroBackground from "@/assets/hero_background.jpg";
 import heroFito from "@/assets/hero_fito.png";
-import casilla from "@/assets/casilla_104.jpg";
 ---
 
 <section class="relative w-full h-[90vh] overflow-hidden">
@@ -18,17 +17,6 @@ import casilla from "@/assets/casilla_104.jpg";
   <div class="absolute inset-0 bg-black/70"></div>
   <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center justify-between px-4 lg:px-8">
     <div class="text-white max-w-xl space-y-4">
-      <div class="block md:hidden w-[40%] mx-auto pb-12 text-center">
-        <Picture
-          src={casilla}
-          alt="Fito Ráquel"
-          class="w-full h-auto object-contain"
-          widths={[150, 300, 450]}
-          sizes="(max-width: 800px) 100vw, 450px"
-          loading="eager"
-          format="avif"
-        />
-      </div>
       <h1 class="text-4xl md:text-5xl font-bold leading-tight">
         <span class="text-accent">FITO RÁQUEL</span><br />
         UNA VOZ JOVEN,<br />
@@ -39,16 +27,12 @@ import casilla from "@/assets/casilla_104.jpg";
         Educación, Emprendimiento y Transparencia como pilares del cambio.
       </p>
       <div class="flex gap-4">
-        <button data-aos="fade-up" class="btn md:btn-lg btn-accent rounded-full">
-          <a href="/propuestas">
-            Ver Propuestas
-          </a>
-        </button>
-        <button data-aos="fade-up" class="btn btn-outline md:btn-lg btn-accent rounded-full">
-          <a href="#cualidades">
-            Conocé Más
-          </a>
-        </button>
+        <a href="/propuestas" class="btn btn-accent md:btn-lg rounded-full" data-aos="fade-up">
+          Ver Propuestas
+        </a>
+        <a href="#cualidades" class="btn btn-outline btn-accent md:btn-lg rounded-full" data-aos="fade-up">
+          Conocé Más
+        </a>
       </div>
     </div>
     <div class="hidden md:block w-[40%] -mr-24 self-end">
