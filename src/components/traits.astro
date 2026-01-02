@@ -3,59 +3,69 @@ import { Icon } from "astro-icon/components";
 import Container from "./container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
 
-const features = [
+const principles = [
   {
-    title: "Escucha Activa",
-    description: "Fito te escucha. Cree en el poder de las ideas ciudadanas para transformar Honduras desde el Congreso.",
+    title: "Participación Ciudadana",
+    description:
+      "Impulso permanente a espacios de diálogo ciudadano para incorporar propuestas reales al trabajo legislativo.",
     icon: "bx:bxs-user-voice",
   },
   {
-    title: "Educación con Propósito",
-    description: "Formado en La Salle (Barcelona, España) y UNITEC, Fito apuesta por una educación accesible y de calidad para todos.",
+    title: "Educación como Política Pública",
+    description:
+      "Formación académica sólida orientada a promover iniciativas que fortalezcan el acceso y la calidad educativa en Honduras.",
     icon: "bx:bxs-graduation",
   },
   {
     title: "Gobierno Abierto",
-    description: "Un solo compromiso: Combatir la corrupción, Rendir cuentas siempre y Desiciones con integridad.",
+    description:
+      "Transparencia, rendición de cuentas y decisiones públicas basadas en integridad y responsabilidad institucional.",
     icon: "bx:bxs-shield",
   },
   {
     title: "Desarrollo Local",
-    description: "Impulso a pequeñas empresas, emprendedores y proyectos comunitarios en barrios y colonias.",
+    description:
+      "Apoyo legislativo a emprendedores, pequeñas empresas y proyectos comunitarios que fortalecen la economía local.",
     icon: "bx:bxs-briefcase-alt",
   },
   {
-    title: "Juventud con Futuro",
-    description: "Fito representa una nueva generación política que quiere construir, no dividir.",
+    title: "Representación Generacional",
+    description:
+      "Ejercicio responsable del cargo desde una nueva generación comprometida con soluciones, consensos y visión de país.",
     icon: "bx:bxs-group",
   },
   {
-    title: "Cercanía Real",
-    description: "Fito es el de la gorra azul. Está donde tú estás: en la calle, en el parque, en tu barrio.",
+    title: "Presencia Territorial",
+    description:
+      "Trabajo cercano y constante en comunidades, barrios y espacios ciudadanos para conocer de primera mano las realidades del país.",
     icon: "bx:bxs-map",
   },
 ];
 ---
 
-<section id="cualidades" class='bg-blue-50 py-8'>
+<section id="principios" class="bg-blue-50 py-12">
   <Container>
     <Sectionhead>
-      <Fragment slot="title">Conoce A Tú Diputado</Fragment>
+      <Fragment slot="title">Principios de trabajo legislativo</Fragment>
       <Fragment slot="desc">
-        Fito Ráquel es un joven comprometido con Honduras. Una propuesta con propósito en el Congreso Nacional.
+        Compromisos que guían el ejercicio del cargo en el Congreso Nacional.
       </Fragment>
     </Sectionhead>
 
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
+    <div class="mt-16 grid gap-12 sm:grid-cols-2 md:grid-cols-3">
       {
-        features.map((item, index) => (
-          <div class="flex gap-4 items-start">
-            <div data-aos="fade-up" data-aos-delay={(index+1) * 50} class="flex-shrink-0 w-12 h-12 rounded-full bg-accent inline-flex items-center justify-center text-white relative z-10">
-              <Icon class="text-white w-6 h-6 " name={item.icon} />
+        principles.map((item) => (
+          <div class="flex items-start gap-4">
+            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-accent text-white">
+              <Icon class="h-6 w-6" name={item.icon} />
             </div>
             <div>
-              <h3 class="font-semibold text-2xl text-primary">{item.title}</h3>
-              <p class="text-blue-800 mt-2 leading-relaxed">{item.description}</p>
+              <h3 class="text-xl font-semibold text-primary">
+                {item.title}
+              </h3>
+              <p class="mt-2 leading-relaxed text-gray-600">
+                {item.description}
+              </p>
             </div>
           </div>
         ))

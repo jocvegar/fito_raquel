@@ -48,7 +48,7 @@ const proposals = [
     title: 'Descentralización del presupuesto de seguridad en el Distrito Central',
     title_icon: 'uil:building',
     subtitle: 'Que una parte del presupuesto de seguridad se quede directamente en la Alcaldía del Distrito Central.',
-    link: '/propuestas/transformar-y-descentralizar-el-infop',
+    link: '/propuestas/descentralizacion-presupuesto',
     items: [
       {
         title: 'Policia Municipal más fuerte',
@@ -95,36 +95,36 @@ const proposals = [
       <Fragment slot="title">Propuestas para un Futuro Mejor</Fragment>
       <Fragment slot="desc"></Fragment>
     </Sectionhead>
-
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
       {proposals.map((proposal) => (
-        <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-blue-100 text-left">
+        <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-blue-100 overflow-hidden">
           <div class="flex items-center mb-5">
-            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-primary rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-              <Icon name={proposal.title_icon} width="26" height="26" />
+            <div class="flex-shrink-0 w-14 h-14 bg-blue-100 text-primary rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300">
+              <Icon name={proposal.title_icon} width="28" height="28" />
             </div>
-            <h3 class="ml-4 text-xl font-bold text-primary group-hover:text-secondary transition-colors">
+            <h3 class="ml-4 text-xl md:text-2xl font-bold text-primary group-hover:text-secondary transition-colors">
+              <a href={proposal.link}>
               {proposal.title}
+              </a>
             </h3>
           </div>
-          <p class="text-secondary mb-6 leading-relaxed">
+          <p class="text-gray-700 mb-6 leading-relaxed md:leading-relaxed">
             {proposal.subtitle}
           </p>
-          <ul class="space-y-3 mb-6 text-primary">
+          <ul class="space-y-3 mb-6 text-gray-700">
             {proposal.items.map((item) => (
-            <li class="flex items-center gap-3">
-              <Icon name={item.title_icon} class="text-primary" width="22" />
-              <span>{item.title}</span>
-            </li>
+              <li class="flex items-center gap-3">
+                <Icon name={item.title_icon} class="text-primary" width="22" />
+                <span>{item.title}</span>
+              </li>
             ))}
           </ul>
-          <a href={proposal.link} class="inline-flex items-center text-primary font-semibold group-hover:text-blue-600 transition-colors">
+          <a href={proposal.link} class="inline-flex items-center text-primary font-semibold group-hover:text-accent transition-transform duration-300">
             Leer más
-            <Icon name="bx:right-arrow-alt" class="ml-1" width="20" />
+            <Icon name="bx:right-arrow-alt" class="ml-1 transform group-hover:translate-x-1 transition-transform" width="20" />
           </a>
         </div>
       ))}
     </div>
-
-</Container>
+  </Container>
 </section>

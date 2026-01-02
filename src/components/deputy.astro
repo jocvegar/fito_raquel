@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+import candidateImage from "@/assets/fito_main.jpeg";
+import { Icon } from "astro-icon/components";
+import Container from "./container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+
+const facts = [
+  {
+    texto: "Master en Dirección de Proyectos",
+    subtexto: "Formación académica",
+    icon: "uil:award"
+  },
+  {
+    texto: "Licenciado en Administración de Empresas",
+    subtexto: "Formación universitaria",
+    icon: "bx:briefcase-alt"
+  },
+  {
+    texto: "Dedicado al rubro de construcción",
+    subtexto: "Trabajo familiar",
+    icon: "bx:building-house"
+  },
+  {
+    texto: "Padre, hijo, esposo y amigo",
+    subtexto: "Familia primero",
+    icon: "bx:user"
+  }
+];
+---
+
+<section id="adolfo" class="bg-gray-50 py-8">
+  <Container>
+    <div class="container px-5 mx-auto flex flex-wrap">
+      <div class="w-full text-center">
+        <Sectionhead>
+          <Fragment slot="title">¿Quién es Adolfo Ráquel?</Fragment>
+          <Fragment slot="desc">Diputado al Congreso Nacional</Fragment>
+        </Sectionhead>
+      </div>
+
+      <div class="container px-5 mx-auto">
+        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+          {facts.map((item, index) => (
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-blue-50 rounded flex p-4 h-full items-center hover:scale-105 transition">
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay={(index + 1) * 50}
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-accent inline-flex items-center justify-center text-white mr-5"
+                >
+                  <Icon class="w-6 h-6" name={item.icon} />
+                </div>
+                <div class="flex-grow pl-4">
+                  <h2 class="font-medium text-xs md:text-sm text-gray-900">
+                    {item.subtexto}
+                  </h2>
+                  <p class="text-base md:text-lg text-primary">
+                    {item.texto}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="container mx-auto flex px-5 py-8 md:flex-row flex-col items-center">
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+          <Image
+            class="object-cover object-center rounded-lg w-full"
+            src={candidateImage}
+            alt="Adolfo Ráquel"
+          />
+        </div>
+
+        <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:text-left items-center text-center">
+          <p class="mb-6 leading-relaxed text-lg">
+            Adolfo Ráquel, conocido como <span class="font-bold">FITO</span>, es
+            un diputado comprometido con el servicio público, el trabajo honesto
+            y el desarrollo sostenible de Honduras. Cree firmemente en generar
+            oportunidades a través del emprendimiento, la inversión privada y
+            una educación alineada a la realidad productiva del país.
+          </p>
+
+          <p class="mb-6 leading-relaxed text-lg">
+            Proveniente de una familia ligada al rubro de la construcción,
+            entiende el valor del esfuerzo diario y la importancia de generar
+            empleo real. Su disciplina personal y actividad deportiva reflejan
+            coherencia entre su vida pública y privada.
+          </p>
+
+          <div class="w-full bg-blue-50 rounded-lg p-6 text-left">
+            <h3 class="font-semibold text-primary text-lg mb-4">
+              Formación y valores
+            </h3>
+            <ul class="list-disc list-inside space-y-2 text-blue-900">
+              <li>
+                <strong>Educación:</strong> Máster en Dirección de Proyectos
+                (La Salle – Universitat Ramon Llull, Barcelona) y Licenciatura en
+                Administración de Empresas (UNITEC).
+              </li>
+              <li>
+                <strong>Fe:</strong> Católico, con convicciones basadas en valores
+                familiares, ética y responsabilidad social.
+              </li>
+            </ul>
+          </div>
+
+          <p class="mt-6 leading-relaxed text-lg">
+            Desde el Congreso Nacional, impulsa iniciativas orientadas a la
+            descentralización, la justicia social sin asistencialismo, la
+            protección del medio ambiente y una transformación institucional que
+            responda a las verdaderas necesidades del pueblo hondureño.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

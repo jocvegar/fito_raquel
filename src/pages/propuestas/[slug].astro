@@ -6,27 +6,33 @@ import Container from "@/components/container.astro";
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
   const proposals = await getCollection("proposals");
-  return proposals.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
+  return proposals.map((proposal) => ({
+    params: { slug: proposal.slug },
+    props: { proposal },
   }));
 }
 
-// Get the entry directly from the prop on render
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+// Get the proposal directly from the prop on render
+const { proposal } = Astro.props;
+const { Content } = await proposal.render();
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={proposal.data.title}>
   <Container>
     <div class="mx-auto max-w-3xl mt-14">
-      <a href="/">
-        <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
-          Fito Diputado
-        </span>
-      </a>
+      <div class="flex justify-between items-center mb-4">
+        <a href="/">
+          <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+            Fito Diputado
+          </span>
+        </a>
+        <a href="/propuestas" class="btn btn-outline btn-sm sm:btn-md btn-accent rounded-full whitespace-nowrap">
+          ← Regresar a Propuestas
+        </a>
+      </div>
+
       <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight text-primary">
-        {entry.data.title}
+        {proposal.data.title}
       </h1>
     </div>
 
