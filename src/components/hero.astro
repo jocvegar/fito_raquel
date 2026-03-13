@@ -1,32 +1,45 @@
 ---
 import { Picture } from "astro:assets";
-import heroBackground from "@/assets/hero_background.jpg";
-import heroFito from "@/assets/hero_fito.png";
+import heroBackground from "@/assets/hero_2.jpg";
 ---
 
-<section class="relative w-full h-[90vh] overflow-hidden">
-  <Picture
-    src={heroBackground}
-    alt="Ciudad"
-    widths={[640, 1024, 1920]}
-    sizes="100vw"
-    class="absolute inset-0 w-full h-full object-cover"
-    loading="lazy"
-    format="avif"
-  />
-  <div class="absolute inset-0 bg-black/70"></div>
-  <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center justify-between px-4 lg:px-8">
-    <div class="text-white max-w-xl space-y-4">
-      <h1 class="text-4xl md:text-5xl font-bold leading-tight">
-        <span class="text-accent">FITO RÁQUEL</span><br />
-        UNA VOZ JOVEN,<br />
-        HONESTA Y VALIENTE<br />
-        PARA EL CONGRESO
+<section class="relative w-full h-[80vh] overflow-hidden">
+  <div class="hidden md:block">
+    <Picture
+      src={heroBackground}
+      alt="Ciudad"
+      widths={[640, 1024, 1920]}
+      sizes="100vw"
+      class="absolute inset-0 w-full h-full object-center"
+      loading="lazy"
+      format="avif"
+    />
+  </div>
+  <div class="block md:hidden">
+    <Picture
+      src={heroBackground}
+      alt="Ciudad"
+      widths={[640, 1024, 1920]}
+      sizes="100vw"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+      format="avif"
+    />
+  </div>
+
+  <div class="absolute inset-0 bg-black/20"></div>
+  <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center justify-center px-4 lg:px-8">
+    <div class="space-y-4">
+      <h1 class="text-white text-center text-3xl md:text-4xl font-black">
+        "VENGO AL CONGRESO...
       </h1>
-      <p class="text-lg md:text-xl">
-        Educación, Emprendimiento y Transparencia como pilares del cambio.
-      </p>
-      <div class="flex gap-4">
+       <h1 class="text-primary text-center text-4xl md:text-5xl font-bold leading-tight">
+        A TRABAJAR DE VERDAD"
+      </h1>
+      <h2 class="text-white text-right text-2xl font-light uppercase md:text-3xl leading-tight">
+        Fito Ráquel
+      </h2>
+      <div class="flex gap-4 mt-10 mb-20 justify-center">
         <a href="/propuestas" class="btn btn-accent md:btn-lg rounded-full" data-aos="fade-up">
           Ver Propuestas
         </a>
@@ -34,17 +47,6 @@ import heroFito from "@/assets/hero_fito.png";
           Conocé Más
         </a>
       </div>
-    </div>
-    <div class="hidden md:block w-[40%] -mr-24 self-end">
-      <Picture
-        src={heroFito}
-        alt="Fito Ráquel"
-        class="w-full h-auto object-contain"
-        widths={[150, 300, 450]}
-        sizes="(max-width: 800px) 100vw, 450px"
-        loading="eager"
-        format="avif"
-      />
     </div>
   </div>
 </section>
