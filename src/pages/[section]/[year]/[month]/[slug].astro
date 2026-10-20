@@ -1,0 +1,123 @@
+---
+import type { GetStaticPathsItem } from "astro";
+import { render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Video from "@/components/activity/video.astro";
+import Gallery from "@/components/activity/gallery.astro";
+import {
+  CATEGORIES,
+  SECTIONS,
+  yearOf,
+  capitalize,
+  isoDate,
+  formatDate,
+  monthOf,
+  videoThumbnail,
+  slugOf,
+  imageUrl,
+  monthUrl,
+  sectionUrl,
+  type Section,
+} from "@/lib/activity";
+import { entriesOf, type Entry } from "@/lib/activity-data";
+
+export async function getStaticPaths() {
+  const paths: GetStaticPathsItem[] = [];
+  for (const section of Object.keys(SECTIONS) as Section[]) {
+    const entries = await entriesOf(section);
+    for (const [i, entry] of entries.entries()) {
+      paths.push({
+        params: {
+          section,
+          year: String(yearOf(entry.data.date)),
+          month: monthOf(entry.data.date),
+          slug: slugOf(entry.id),
+        },
+        props: { entry, previous: entries[i - 1], next: entries[i + 1] },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  entry: Entry;
+  previous?: Entry;
+  next?: Entry;
+}
+
+const section = Astro.params.section as Section;
+const { entry, previous, next } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+const year = yearOf(data.date);
+const month = monthOf(data.date);
+const shareImage = data.photos[0]
+  ? imageUrl(data.photos[0].src, 1200)
+  : data.video && videoThumbnail(data.video);
+---
+
+<Layout title={data.title} description={data.summary} image={shareImage}>
+  <Container>
+    <div class="mx-auto max-w-3xl pb-24">
+    <nav class="mt-10 text-sm" aria-label="Ruta">
+      <a href={sectionUrl(section)} class="text-primary hover:underline">{SECTIONS[section].title}</a>
+      <span class="text-gray-400"> / </span>
+      <a href={monthUrl(section, year, month)} class="text-primary hover:underline">{capitalize(month)} {year}</a>
+    </nav>
+    <article class="mt-6">
+      <header>
+        <p class="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <time datetime={isoDate(data.date)} class="font-semibold text-primary">
+            {formatDate(data.date)}
+          </time>
+          <span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-sm font-medium text-primary">
+            {CATEGORIES[data.category]}
+          </span>
+          {data.location && <span class="text-gray-600">{data.location}</span>}
+        </p>
+        <h1 class="mt-3 text-3xl font-bold leading-tight text-gray-900 lg:text-4xl">{data.title}</h1>
+        <p class="mt-4 text-lg leading-relaxed text-gray-700">{data.summary}</p>
+      </header>
+
+      {data.video && <div class="mt-8"><Video video={data.video} title={data.title} /></div>}
+
+      <div class="prose prose-lg mt-8 max-w-none">
+        <Content />
+      </div>
+
+      {data.photos.length > 0 && <div class="mt-8"><Gallery photos={data.photos} /></div>}
+
+      {
+        data.source && (
+          <p class="mt-8 text-sm text-gray-600">
+            Fuente: <a href={data.source} class="text-primary underline" rel="noopener">{new URL(data.source).hostname}</a>
+          </p>
+        )
+      }
+    </article>
+
+    <nav class="mt-12 grid gap-4 border-t border-base-300 pt-6 sm:grid-cols-2" aria-label="Otras actividades">
+      {
+        previous ? (
+          <a href={previous.url} class="group">
+            <span class="text-sm text-gray-500">← Anterior</span>
+            <span class="block font-medium text-primary group-hover:underline">{previous.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next && (
+          <a href={next.url} class="group sm:text-right">
+            <span class="text-sm text-gray-500">Siguiente →</span>
+            <span class="block font-medium text-primary group-hover:underline">{next.data.title}</span>
+          </a>
+        )
+      }
+    </nav>
+    </div>
+  </Container>
+</Layout>

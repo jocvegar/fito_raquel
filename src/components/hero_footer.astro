@@ -1,26 +1,39 @@
 ---
 import { Picture } from "astro:assets";
-import heroBackground from "@/assets/hero_footer.jpeg";
+import background from "@/assets/hero_footer.jpeg";
+import { entriesOf } from "@/lib/activity-data";
+
+const hasGorraAzul = (await entriesOf("la-gorra-azul")).length > 0;
 ---
 
-<section class="relative w-full h-[80vh] overflow-hidden">
+<section class="relative isolate overflow-hidden">
   <Picture
-    src={heroBackground}
-    alt="Ciudad"
+    src={background}
+    alt="Multitud con una gran bandera de Honduras"
     widths={[640, 1024, 1920]}
     sizes="100vw"
-    class="absolute inset-0 w-full h-full object-cover"
+    formats={["avif", "webp"]}
     loading="lazy"
-    format="avif"
+    class="absolute inset-0 -z-10 h-full w-full object-cover"
   />
-  <div class="absolute inset-0 bg-black/70"></div>
+  <div class="absolute inset-0 -z-10 bg-blue-950/75"></div>
 
-  <div class="relative z-10 max-w-7xl mx-auto h-full flex flex-col items-center justify-start mt-20 px-4 lg:px-8 text-center space-y-6">
-    <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">
-      ¡Muchas Gracias a Todos!
-    </h1>
-    <p class="text-white text-xl md:text-2xl max-w-lg">
-      ¡Ahora vamos al Congreso a trabajar de verdad!
-    </p>
+  <div class="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center px-5 py-20 text-center text-white">
+    <span class="h-1.5 w-14 rounded bg-accent" aria-hidden="true"></span>
+    <h2 class="mt-6 text-3xl font-bold leading-tight md:text-5xl">
+      Conozca el trabajo de Fito
+    </h2>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/labor-legislativa/" class="btn btn-accent rounded-full md:btn-lg">
+        Ver Labor Legislativa
+      </a>
+      {
+        hasGorraAzul && (
+          <a href="/la-gorra-azul/" class="btn btn-outline rounded-full border-white text-white hover:bg-white hover:text-blue-950 md:btn-lg">
+            Ver La Gorra Azul
+          </a>
+        )
+      }
+    </div>
   </div>
 </section>

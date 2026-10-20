@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+import fitoPortrait from "@/assets/fito_main.jpeg";
+import hadwinPortrait from "@/assets/hadwin_main.jpg";
+import Container from "./container.astro";
+---
+
+<section id="fito" class="bg-base-200 py-16">
+  <Container>
+    <div class="mx-auto max-w-4xl">
+      <h2 class="text-3xl font-bold text-primary md:text-4xl">¿Quién es Fito?</h2>
+
+      <div class="mt-8 grid gap-8 md:grid-cols-[240px_1fr]">
+        <Image
+          src={fitoPortrait}
+          alt="Adolfo “Fito” Ráquel"
+          widths={[240, 480]}
+          sizes="(min-width: 768px) 240px, 100vw"
+          class="mx-auto aspect-[4/5] w-full max-w-xs rounded-lg object-cover object-top md:mx-0"
+        />
+        <div class="space-y-4 text-lg leading-relaxed text-gray-700">
+          <p>
+            Adolfo Ráquel, conocido como <strong>Fito</strong>, es un diputado
+            comprometido con el servicio público, el trabajo honesto y el
+            desarrollo sostenible de Honduras. Cree firmemente en generar
+            oportunidades a través del emprendimiento, la inversión privada y una
+            educación alineada a la realidad productiva del país.
+          </p>
+          <p>
+            Proveniente de una familia ligada al rubro de la construcción, entiende
+            el valor del esfuerzo diario y la importancia de generar empleo real.
+          </p>
+
+          <dl class="grid gap-3 pt-2 text-base sm:grid-cols-2">
+            <div>
+              <dt class="font-semibold text-gray-900">Máster en Dirección de Proyectos</dt>
+              <dd class="text-gray-600">La Salle – Universitat Ramon Llull, Barcelona</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-gray-900">Licenciatura en Administración de Empresas</dt>
+              <dd class="text-gray-600">UNITEC</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        <div class="rounded-lg border-l-4 border-primary bg-white p-6">
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-primary">Misión</h3>
+          <p class="mt-2 leading-relaxed text-gray-700">
+            Legislar con responsabilidad y valentía para impulsar el empleo digno,
+            atraer inversión, proteger nuestro ambiente, fortalecer el tejido social
+            y defender la democracia.
+          </p>
+        </div>
+        <div class="rounded-lg border-l-4 border-primary bg-white p-6">
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-primary">Visión</h3>
+          <p class="mt-2 leading-relaxed text-gray-700">
+            Construir una Honduras moderna, justa y sostenible, donde las
+            oportunidades lleguen a todos, sin ideologías que dividan, y con un
+            Estado que sirva, no que estorbe.
+          </p>
+        </div>
+      </div>
+
+      <div id="hadwin" class="mt-16 border-t border-base-300 pt-12">
+        <p class="text-sm font-semibold uppercase tracking-wider text-primary">Diputado Suplente</p>
+        <h3 class="mt-1 text-2xl font-bold text-gray-900 md:text-3xl">Dr. Hadwin Aguilar</h3>
+
+        <div class="mt-8 grid gap-8 md:grid-cols-[240px_1fr]">
+          <Image
+            src={hadwinPortrait}
+            alt="Dr. Hadwin Aguilar"
+            widths={[240, 480]}
+            sizes="(min-width: 768px) 240px, 100vw"
+            class="mx-auto aspect-[4/5] w-full max-w-xs rounded-lg object-cover object-top md:mx-0"
+          />
+          <div class="space-y-4 text-lg leading-relaxed text-gray-700">
+            <p>
+              El Dr. Hadwin Aguilar es médico ginecólogo obstetra y uroginecólogo,
+              con más de 15 años de trayectoria en la salud pública hondureña. Su
+              carrera se ha caracterizado por una atención ética, humana y cercana,
+              especialmente hacia mujeres y comunidades vulnerables.
+            </p>
+            <p>
+              Padre de familia y hondureño comprometido, combina su vocación médica
+              con una profunda sensibilidad social. Su experiencia en el sistema de
+              salud le permite comprender, desde la práctica, los retos
+              estructurales que enfrenta el país.
+            </p>
+            <p>
+              Como <strong>diputado suplente</strong>, acompaña a Fito Ráquel
+              aportando conocimiento técnico, criterio profesional y disposición
+              permanente para asumir responsabilidades legislativas cuando el
+              Congreso lo requiera.
+            </p>
+
+            <dl class="grid gap-3 pt-2 text-base sm:grid-cols-3">
+              <div>
+                <dt class="font-semibold text-gray-900">Ginecólogo Obstetra</dt>
+                <dd class="text-gray-600">Especialista en salud femenina</dd>
+              </div>
+              <div>
+                <dt class="font-semibold text-gray-900">Subespecialista en Urología Ginecológica</dt>
+                <dd class="text-gray-600">Atención integral y especializada</dd>
+              </div>
+              <div>
+                <dt class="font-semibold text-gray-900">Más de 15 años en salud pública</dt>
+                <dd class="text-gray-600">Servicio al sistema nacional</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

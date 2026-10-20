@@ -8,22 +8,22 @@ import { Icon } from "astro-icon/components";
 <footer id="footer" class="bg-blue-950 body-font">
   <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
     <a href="/" class="text-lg">
-      <Image src={logoIcon} alt="logo" width="60" height="60" />
+      <Image src={logoIcon} alt="Fito Ráquel, inicio" width="60" height="60" />
     </a>
     <p class="text-sm text-white sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-      © 2025
+      © {new Date().getFullYear()} Fito Ráquel
     </p>
     <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-      <Link style="transparent" href="https://www.facebook.com/adolfo.raquel.1" target="_blank" title="facebook">
+      <Link style="transparent" href="https://www.facebook.com/adolfo.raquel.1" target="_blank" title="facebook" aria-label="facebook">
         <Icon name="simple-icons:facebook" class="w-5 h-5" />
       </Link>
-      <Link style="transparent" class="ml-3" href="https://x.com/arp_25" target="_blank" title="x">
+      <Link style="transparent" class="ml-3" href="https://x.com/arp_25" target="_blank" title="x" aria-label="x">
         <Icon name="simple-icons:x" class="w-5 h-5" />
       </Link>
-      <Link style="transparent" class="ml-3" href="https://instagram.com/fito4" target="_blank" title="Instagram">
+      <Link style="transparent" class="ml-3" href="https://instagram.com/fito4" target="_blank" title="Instagram" aria-label="Instagram">
         <Icon name="simple-icons:instagram" class="w-5 h-5" />
       </Link>
-      <Link style="transparent" class="ml-3" href="https://tiktok.com/@fitor04" target="_blank" title="TikTok">
+      <Link style="transparent" class="ml-3" href="https://tiktok.com/@fitor04" target="_blank" title="TikTok" aria-label="TikTok">
         <Icon name="simple-icons:tiktok" class="w-5 h-5" />
       </Link>
     </span>

@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import Container from "./container.astro";
+import Card from "@/components/activity/card.astro";
+import { SECTIONS, sectionUrl, type Section } from "@/lib/activity";
+import { entriesOf } from "@/lib/activity-data";
+
+interface Props {
+  section: Section;
+  subtitle: string;
+  class?: string;
+  watermark?: ImageMetadata;
+}
+
+const { section, subtitle, class: className, watermark } = Astro.props;
+const recent = (await entriesOf(section)).slice(-3).reverse();
+---
+
+{
+  recent.length > 0 && (
+    <section id={section} class:list={["relative overflow-hidden py-16", className]}>
+      {watermark && (
+        <Image
+          src={watermark}
+          alt=""
+          aria-hidden="true"
+          widths={[560, 1100]}
+          sizes="560px"
+          class="pointer-events-none absolute -right-16 top-1/2 hidden w-[560px] -translate-y-1/2 select-none opacity-[0.12] lg:block"
+        />
+      )}
+      <Container class="relative">
+        <div class="mx-auto max-w-4xl">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 class="text-3xl font-bold text-primary md:text-4xl">{SECTIONS[section].title}</h2>
+              <p class="mt-2 text-lg text-gray-600">{subtitle}</p>
+            </div>
+            <a href={sectionUrl(section)} class="font-semibold text-primary hover:underline">
+              Ver todo el registro →
+            </a>
+          </div>
+          <div class="mt-8 grid gap-4">
+            {recent.map((entry) => <Card entry={entry} />)}
+          </div>
+        </div>
+      </Container>
+    </section>
+  )
+}

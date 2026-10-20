@@ -7,33 +7,36 @@ import "aos/dist/aos.css";
 
 export interface Props {
   title: string;
+  description?: string;
+  image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
-const resolvedImageWithDomain = new URL(
-  "/opengraph_v2.jpg",
-  Astro.site
-).toString();
+const {
+  title,
+  description = "Adolfo \"Fito\" Ráquel · Congreso Nacional de Honduras, período 2026-2030. Registro público de su labor legislativa y social.",
+  image = "/og_fito.jpg",
+} = Astro.props;
 
-const { title } = Astro.props;
+const resolvedImageWithDomain = new URL(image, Astro.site).toString();
 
 const makeTitle = title
-  ? `${title} | Fito Diputado`
-  : "Fito Ráquel | Diputado por Honduras";
+  ? `${title} | Fito Ráquel`
+  : "Fito Ráquel | Congreso Nacional de Honduras";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth" data-theme="pn">
+<html lang="es" class="scroll-smooth" data-theme="pn">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
 
     <SEO
       title={makeTitle}
-      description="Fito Ráquel es un joven líder comprometido con Honduras. Conoce su propuesta y súmate al cambio."
+      description={description}
       canonical={canonicalURL}
       twitter={{
         creator: "@arp_25",
@@ -45,10 +48,14 @@ const makeTitle = title
           url: canonicalURL,
           type: "website",
           title: makeTitle,
-          image: `${resolvedImageWithDomain}?v=2`,
+          image: resolvedImageWithDomain,
+        },
+        optional: {
+          description,
+          locale: "es_HN",
         },
         image: {
-          alt: "Fito Ráquel - Diputado por Honduras",
+          alt: "Fito Ráquel · Congreso Nacional de Honduras, período 2026-2030",
         },
       }}
     />
@@ -57,11 +64,6 @@ const makeTitle = title
     <Navbar />
     <slot />
     <Footer />
-    <style is:global>
-      img {
-        content-visibility: auto;
-      }
-    </style>
     <script>
       import AOS from "aos";
       AOS.init({

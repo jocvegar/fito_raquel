@@ -1,10 +1,12 @@
 ---
 import Container from "@/components/container.astro";
-import Link from "@/components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { Image } from "astro:assets";
 import logo from "@/assets/logo.png"
+import { entriesOf } from "@/lib/activity-data";
+
+const hasGorraAzul = (await entriesOf("la-gorra-azul")).length > 0;
 
 const menuitems = [
    {
@@ -12,26 +14,21 @@ const menuitems = [
     path: "/",
   },
   {
-    title: "Principios",
-    path: "/#principios",
+    title: "Labor Legislativa",
+    path: "/labor-legislativa/",
   },
-   {
-    title: "Adolfo",
-    path: "/#adolfo",
-  },
-   {
-    title: "Hadwin",
-    path: "/#hadwin",
-  },
+  ...(hasGorraAzul
+    ? [
+        {
+          title: "La Gorra Azul",
+          path: "/la-gorra-azul/",
+        },
+      ]
+    : []),
   {
-    title: "Conoce Más",
-    path: "#",
-    children: [
-      { title: "Misión", path: "/#mision" },
-      { title: "Visión", path: "/#vision" },
-      { title: "Redes", path: "/#footer" }
-    ],
-  }
+    title: "¿Quién es Fito?",
+    path: "/#fito",
+  },
 ];
 ---
 
@@ -40,10 +37,10 @@ const menuitems = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-2xl md:text-4xl">
-          <Image src={logo} alt="logo" width="120" height="120" />
+          <Image src={logo} alt="Fito Ráquel, inicio" width="120" height="120" />
         </a>
         <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-blue-800" />
+          <MenuIcon class="h-11 w-11 p-2.5 text-blue-800" />
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
@@ -72,16 +69,7 @@ const menuitems = [
             ))
           }
         </ul>
-        <div class="lg:hidden flex items-center mt-3 gap-4">
-          <!-- <Link href="#" style="muted" block size="md">Log in</Link> -->
-          <Link href="/propuestas" size="md" block>Propuestas</Link>
-        </div>
       </MenuItems>
     </Astronav>
-    <div>
-      <div class="hidden lg:flex items-center gap-4">
-        <Link href="/propuestas" size="md">Propuestas</Link>
-      </div>
-    </div>
   </Container>
 </header>
