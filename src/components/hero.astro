@@ -1,50 +1,42 @@
 ---
 import { Picture } from "astro:assets";
-import heroBackground from "@/assets/hero_2.jpg";
+import portrait from "@/assets/fito.jpg";
 ---
 
-<section class="relative w-full h-[80vh] overflow-hidden">
-  <div class="hidden md:block">
-    <Picture
-      src={heroBackground}
-      alt="Ciudad"
-      widths={[640, 1024, 1920]}
-      sizes="100vw"
-      class="absolute inset-0 w-full h-full object-center"
-      loading="lazy"
-      format="avif"
-    />
-  </div>
-  <div class="block md:hidden">
-    <Picture
-      src={heroBackground}
-      alt="Ciudad"
-      widths={[640, 1024, 1920]}
-      sizes="100vw"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="lazy"
-      format="avif"
-    />
-  </div>
+<section class="bg-blue-950 text-white">
+  <div class="grid lg:min-h-[min(80vh,720px)] lg:grid-cols-2">
+    <div class="relative aspect-[4/3] overflow-hidden lg:aspect-auto">
+      <Picture
+        src={portrait}
+        alt="Fito Ráquel"
+        widths={[640, 960, 1440, 1920]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        formats={["avif", "webp"]}
+        loading="eager"
+        fetchpriority="high"
+        class="absolute inset-0 h-full w-full object-cover object-[45%_25%]"
+      />
+    </div>
 
-  <div class="absolute inset-0 bg-black/20"></div>
-  <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center justify-center px-4 lg:px-8">
-    <div class="space-y-4">
-      <h1 class="text-white text-center text-3xl md:text-4xl font-black">
-        "VENGO AL CONGRESO...
+    <div class="flex max-w-2xl flex-col justify-center px-5 py-12 lg:px-16">
+      <span class="h-1.5 w-14 rounded bg-accent" aria-hidden="true"></span>
+      <h1 class="mt-6 text-4xl font-bold leading-tight md:text-6xl">
+        Adolfo “Fito” Ráquel
       </h1>
-       <h1 class="text-primary text-center text-4xl md:text-5xl font-bold leading-tight">
-        A TRABAJAR DE VERDAD"
-      </h1>
-      <h2 class="text-white text-right text-2xl font-light uppercase md:text-3xl leading-tight">
-        Fito Ráquel
-      </h2>
-      <div class="flex gap-4 mt-10 mb-20 justify-center">
-        <a href="/propuestas" class="btn btn-accent md:btn-lg rounded-full" data-aos="fade-up">
-          Ver Propuestas
+      <p class="mt-4 text-lg text-blue-100 md:text-xl">
+        Congreso Nacional de Honduras<br />
+        Período 2026–2030
+      </p>
+      <p class="mt-6 max-w-lg text-base leading-relaxed text-blue-100/90">
+        Mi trabajo en el Congreso Nacional y en las comunidades.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/labor-legislativa/" class="btn btn-accent rounded-full md:btn-lg">
+          Ver Labor Legislativa
         </a>
-        <a href="#principios" class="btn btn-outline btn-accent md:btn-lg rounded-full" data-aos="fade-up">
-          Conocé Más
+        <a href="#fito" class="btn btn-outline rounded-full border-white text-white hover:bg-white hover:text-blue-950 md:btn-lg">
+          ¿Quién es Fito?
         </a>
       </div>
     </div>

@@ -1,0 +1,96 @@
+---
+import { imageSrcset, imageUrl } from "@/lib/activity";
+
+interface Props {
+  photos: { src: string; alt: string; credit?: string }[];
+}
+
+const { photos } = Astro.props;
+---
+
+{
+  photos.length > 0 && (
+    <div data-gallery>
+      <ul class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {photos.map((photo, index) => (
+          <li>
+            <button
+              type="button"
+              class="block aspect-square w-full cursor-zoom-in overflow-hidden rounded-md bg-base-300"
+              data-index={index}
+              data-src={imageUrl(photo.src, 1600)}
+              data-alt={photo.alt}
+              data-credit={photo.credit ?? ""}
+              aria-label={`Ampliar foto: ${photo.alt}`}>
+              <img
+                src={imageUrl(photo.src, 400)}
+                srcset={imageSrcset(photo.src, [400, 800])}
+                sizes="(min-width: 640px) 250px, 50vw"
+                alt={photo.alt}
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover transition hover:scale-105"
+              />
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <dialog class="m-auto max-h-none max-w-none bg-transparent p-0 backdrop:bg-black/90">
+        <figure class="flex h-[100dvh] w-screen flex-col items-center justify-center gap-3 p-4">
+          <img class="max-h-[80dvh] max-w-full rounded object-contain" alt="" />
+          <figcaption class="text-center text-sm text-white/80" />
+        </figure>
+        <button type="button" data-action="close" class="btn btn-circle btn-ghost absolute right-4 top-4 text-2xl text-white" aria-label="Cerrar">
+          ✕
+        </button>
+        {photos.length > 1 && (
+          <>
+            <button type="button" data-action="prev" class="btn btn-circle btn-ghost absolute left-2 top-1/2 -translate-y-1/2 text-3xl text-white" aria-label="Foto anterior">
+              ‹
+            </button>
+            <button type="button" data-action="next" class="btn btn-circle btn-ghost absolute right-2 top-1/2 -translate-y-1/2 text-3xl text-white" aria-label="Foto siguiente">
+              ›
+            </button>
+          </>
+        )}
+      </dialog>
+    </div>
+  )
+}
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-gallery]").forEach((gallery) => {
+    const thumbnails = [...gallery.querySelectorAll<HTMLButtonElement>("[data-index]")];
+    const dialog = gallery.querySelector("dialog")!;
+    const image = dialog.querySelector("img")!;
+    const caption = dialog.querySelector("figcaption")!;
+    let current = 0;
+
+    const show = (index: number) => {
+      current = (index + thumbnails.length) % thumbnails.length;
+      const { src, alt, credit } = thumbnails[current].dataset;
+      image.src = src!;
+      image.alt = alt!;
+      caption.textContent = [alt, credit && `Foto: ${credit}`].filter(Boolean).join(" · ");
+    };
+
+    thumbnails.forEach((thumbnail, index) =>
+      thumbnail.addEventListener("click", () => {
+        show(index);
+        dialog.showModal();
+      })
+    );
+    dialog.addEventListener("close", () => thumbnails[current].focus());
+    dialog.addEventListener("click", (event) => {
+      const action = (event.target as HTMLElement).closest<HTMLElement>("[data-action]")?.dataset.action;
+      if (action === "close" || event.target === dialog || event.target === image.parentElement) dialog.close();
+      if (action === "prev") show(current - 1);
+      if (action === "next") show(current + 1);
+    });
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.key === "ArrowRight") show(current + 1);
+    });
+  });
+</script>

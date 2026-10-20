@@ -1,0 +1,130 @@
+
+backend:
+  name: github
+  repo: jocvegar/fito_raquel
+  branch: master
+
+local_backend: true
+
+locale: es
+
+media_folder: public/uploads
+public_folder: /uploads
+media_library:
+  name: cloudinary
+  output_filename_only: false
+  use_transformations: false
+  config:
+    cloud_name: xm0xqj5v
+    api_key: "649191449471949"
+
+collections:
+  - name: activities
+    label: Bitácora
+    label_singular: Actividad
+    folder: src/content/activities
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.date}}-{{slug}}"
+    identifier_field: title
+    summary: "{{fields.date}} · {{title}}"
+    sortable_fields: ["date", "title"]
+    view_filters:
+      - { label: Labor Legislativa, field: section, pattern: labor-legislativa }
+      - { label: La Gorra Azul, field: section, pattern: la-gorra-azul }
+      - { label: Borradores, field: draft, pattern: true }
+    fields:
+      - label: Fecha
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: DD/MM/YYYY
+        time_format: false
+        picker_utc: true
+      - label: Sección
+        name: section
+        widget: select
+        default: labor-legislativa
+        options:
+          - { label: Labor Legislativa, value: labor-legislativa }
+          - { label: La Gorra Azul, value: la-gorra-azul }
+      - label: Categoría
+        name: category
+        widget: select
+        options:
+          - { label: Institucional, value: institucional }
+          - { label: Sesión del pleno, value: sesion }
+          - { label: Actividad de comisión, value: comision }
+          - { label: Moción, value: mocion }
+          - { label: Proyecto de ley, value: proyecto-de-ley }
+          - { label: Iniciativa, value: iniciativa }
+          - { label: Proyecto aprobado, value: proyecto-aprobado }
+          - { label: Comparecencia, value: comparecencia }
+          - { label: Reunión con sectores, value: reunion-sectorial }
+          - { label: Socialización, value: socializacion }
+          - { label: Gestión, value: gestion }
+          - { label: Acción social, value: accion-social }
+          - { label: Visita en territorio, value: territorio }
+          - { label: Apoyo comunitario, value: apoyo-comunitario }
+      - { label: Titular, name: title, widget: string }
+      - label: Resumen
+        name: summary
+        widget: text
+        hint: "2 a 4 oraciones. Qué se hizo, con quién, para qué y qué sigue."
+      - { label: Lugar, name: location, widget: string, required: false }
+      - label: Video
+        name: video
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - label: Link de YouTube
+            name: url
+            widget: string
+            required: false
+            hint: "Pegá el link del video o del Short."
+          - label: Formato
+            name: format
+            widget: select
+            default: vertical
+            options:
+              - { label: Vertical (Reel / Short), value: vertical }
+              - { label: Horizontal, value: horizontal }
+      - label: Fotos
+        name: photos
+        widget: list
+        required: false
+        hint: "Máximo recomendado: 12 fotos por actividad."
+        fields:
+          - { label: Foto, name: src, widget: image }
+          - label: Descripción de la foto
+            name: alt
+            widget: string
+            hint: "Qué se ve en la foto (para personas con discapacidad visual)."
+          - { label: Crédito, name: credit, widget: string, required: false }
+      - label: Descripción ampliada
+        name: body
+        widget: markdown
+        required: false
+        buttons: [bold, italic, link, bulleted-list, numbered-list]
+        editor_components: []
+      - label: Fuente oficial
+        name: source
+        widget: string
+        required: false
+        hint: "Link a acta, transmisión oficial o nota de prensa, si existe."
+      - label: Redes (referencia interna, no se muestra)
+        name: social
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Instagram, name: instagram, widget: string, required: false }
+          - { label: Facebook, name: facebook, widget: string, required: false }
+      - { label: Destacado, name: featured, widget: boolean, default: false }
+      - label: Borrador
+        name: draft
+        widget: boolean
+        default: false
+        hint: "Los borradores no se publican en el sitio."

@@ -1,0 +1,125 @@
+---
+import type { GetStaticPathsItem } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Card from "@/components/activity/card.astro";
+import {
+  CATEGORIES,
+  SECTIONS,
+  capitalize,
+  monthUrl,
+  sectionUrl,
+  type Section,
+} from "@/lib/activity";
+import { groupByMonth, entriesOf, type Month } from "@/lib/activity-data";
+
+export async function getStaticPaths() {
+  const paths: GetStaticPathsItem[] = [];
+  for (const section of Object.keys(SECTIONS) as Section[]) {
+    const months = groupByMonth(await entriesOf(section));
+    for (const [i, month] of months.entries()) {
+      paths.push({
+        params: { section, year: String(month.year), month: month.month },
+        props: { month, previous: months[i - 1], next: months[i + 1] },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  month: Month;
+  previous?: Month;
+  next?: Month;
+}
+
+const section = Astro.params.section as Section;
+const { month, previous, next } = Astro.props;
+const monthName = `${capitalize(month.month)} ${month.year}`;
+const categories = [...new Set(month.entries.map((e) => e.data.category))];
+const linkTo = (m: Month) => monthUrl(section, m.year, m.month);
+---
+
+<Layout
+  title={`${SECTIONS[section].title}: ${monthName}`}
+  description={`Actividades de Fito Ráquel en ${monthName}: ${SECTIONS[section].title}.`}>
+  <Container>
+    <div class="mx-auto max-w-4xl pb-24">
+    <nav class="mt-10 text-sm" aria-label="Ruta">
+      <a href={sectionUrl(section)} class="text-primary hover:underline">
+        {SECTIONS[section].title}
+      </a>
+      <span class="text-gray-400"> / {month.year}</span>
+    </nav>
+
+    <header class="mt-4">
+      <h1 class="text-4xl font-bold text-primary lg:text-5xl">{monthName}</h1>
+      <p class="mt-3 text-lg text-gray-600">
+        {month.entries.length}
+        {month.entries.length === 1 ? "actividad registrada" : "actividades registradas"}
+      </p>
+    </header>
+
+    {
+      categories.length > 1 && (
+        <div class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filtrar por categoría" data-filters>
+          <button type="button" class="btn btn-sm btn-primary rounded-full" data-filter="" aria-pressed="true">
+            Todas
+          </button>
+          {categories.map((category) => (
+            <button type="button" class="btn btn-sm btn-outline btn-primary rounded-full" data-filter={category} aria-pressed="false">
+              {CATEGORIES[category]}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
+    <ol class="mt-8 grid gap-4">
+      {
+        month.entries.map((entry) => (
+          <li data-category={entry.data.category}>
+            <Card entry={entry} />
+          </li>
+        ))
+      }
+    </ol>
+
+    <nav class="mt-12 flex justify-between gap-4 border-t border-base-300 pt-6" aria-label="Otros meses">
+      {
+        previous ? (
+          <a href={linkTo(previous)} class="text-primary hover:underline">
+            ← {capitalize(previous.month)} {previous.year}
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next && (
+          <a href={linkTo(next)} class="text-primary hover:underline">
+            {capitalize(next.month)} {next.year} →
+          </a>
+        )
+      }
+    </nav>
+    </div>
+  </Container>
+</Layout>
+
+<script>
+  const filters = document.querySelector<HTMLElement>("[data-filters]");
+  filters?.addEventListener("click", (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-filter]");
+    if (!button) return;
+    const filter = button.dataset.filter;
+    filters.querySelectorAll<HTMLButtonElement>("[data-filter]").forEach((b) => {
+      const active = b === button;
+      b.setAttribute("aria-pressed", String(active));
+      b.classList.toggle("btn-outline", !active);
+    });
+    document.querySelectorAll<HTMLElement>("li[data-category]").forEach((item) => {
+      item.hidden = Boolean(filter) && item.dataset.category !== filter;
+    });
+  });
+</script>

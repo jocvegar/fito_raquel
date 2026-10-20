@@ -1,20 +1,34 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/hero.astro";
-import Traits from "@/components/traits.astro";
-import Profile from "@/components/deputy.astro";
-import Substitute from "@/components/substitute.astro";
-import Proposals from "@/components/proposals.astro";
-import MisionVision from "@/components/mision_vision.astro";
+import RecentActivity from "@/components/recent_activity.astro";
+import AboutFito from "@/components/about_fito.astro";
 import HeroFooter from "@/components/hero_footer.astro";
+import coatOfArms from "@/assets/coat_of_arms.png";
+// import Traits from "@/components/traits.astro";
+// import Profile from "@/components/deputy.astro";
+// import Substitute from "@/components/substitute.astro";
+// import Proposals from "@/components/proposals.astro";
+// import MisionVision from "@/components/mision_vision.astro";
 ---
 
-<Layout title="Inicio">
+<Layout title="">
   <Hero />
-  <Traits />
-  <Profile />
-  <Substitute />
-  <Proposals />
-  <MisionVision />
+  <RecentActivity
+    section="labor-legislativa"
+    subtitle="Lo más reciente del trabajo en el Congreso Nacional."
+    watermark={coatOfArms}
+  />
+  <RecentActivity
+    section="la-gorra-azul"
+    subtitle="Acción social y trabajo en las comunidades."
+    class="border-t border-base-300"
+  />
+  <AboutFito />
   <HeroFooter />
+  {/* <Traits /> */}
+  {/* <Profile /> */}
+  {/* <Substitute /> */}
+  {/* <Proposals /> */}
+  {/* <MisionVision /> */}
 </Layout>

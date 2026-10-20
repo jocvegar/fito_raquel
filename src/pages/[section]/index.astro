@@ -1,0 +1,221 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Card from "@/components/activity/card.astro";
+import {
+  CATEGORIES,
+  SECTIONS,
+  capitalize,
+  isoDate,
+  formatDate,
+  thumbnailOf,
+  monthUrl,
+  type Section,
+} from "@/lib/activity";
+import { groupByMonth, entriesOf } from "@/lib/activity-data";
+
+export function getStaticPaths() {
+  return Object.keys(SECTIONS).map((section) => ({ params: { section } }));
+}
+
+const section = Astro.params.section as Section;
+const { title, description } = SECTIONS[section];
+const entries = await entriesOf(section);
+const months = groupByMonth(entries);
+const years = [...new Set(months.map((m) => m.year))].sort((a, b) => b - a);
+const [latest, ...recent] = entries.slice(-5).reverse();
+const latestThumbnail = latest && thumbnailOf(latest.data, 800);
+const mosaic = entries
+  .slice(-3)
+  .reverse()
+  .map((e) => thumbnailOf(e.data))
+  .filter((m) => m !== undefined);
+---
+
+<Layout title={title} description={description}>
+  <section class="bg-blue-950 text-white">
+    <Container>
+      <div class="mx-auto grid max-w-5xl items-center gap-12 py-14 md:py-20 lg:grid-cols-[1fr_auto]">
+        <div>
+        <span class="block h-1.5 w-14 rounded bg-accent" aria-hidden="true"></span>
+        <h1 class="mt-6 text-4xl font-bold md:text-6xl">{title}</h1>
+        <p class="mt-4 max-w-2xl text-lg leading-relaxed text-blue-100 md:text-xl">{description}</p>
+
+        {
+          entries.length > 0 && (
+            <dl class="mt-10 grid max-w-2xl grid-cols-2 gap-x-10 gap-y-6 border-t border-white/15 pt-8 sm:grid-cols-[auto_auto_1fr]">
+              <div>
+                <dt class="text-sm text-blue-200">Actividades</dt>
+                <dd class="mt-1 text-3xl font-bold">{entries.length}</dd>
+              </div>
+              <div>
+                <dt class="text-sm text-blue-200">Meses registrados</dt>
+                <dd class="mt-1 text-3xl font-bold">{months.length}</dd>
+              </div>
+              <div class="col-span-2 sm:col-span-1">
+                <dt class="text-sm text-blue-200">Última actividad</dt>
+                <dd class="mt-1 text-lg font-semibold">
+                  <time datetime={isoDate(latest.data.date)}>{formatDate(latest.data.date)}</time>
+                </dd>
+              </div>
+            </dl>
+          )
+        }
+        </div>
+        {
+          mosaic.length > 0 && (
+            <div class="hidden gap-3 lg:flex" aria-hidden="true">
+              {mosaic.map((m, i) => (
+                <img
+                  src={m.src}
+                  alt=""
+                  loading="eager"
+                  class:list={[
+                    "w-28 rounded-lg object-cover shadow-2xl ring-1 ring-white/10",
+                    m.vertical ? "aspect-[9/16]" : "aspect-[3/4]",
+                    i === 1 && "translate-y-8",
+                  ]}
+                />
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <div class="mx-auto max-w-5xl pb-24">
+      {
+        entries.length === 0 ? (
+          <p class="mt-12 rounded-lg bg-base-200 p-6 text-gray-600">
+            Pronto publicaremos aquí las primeras actividades.
+          </p>
+        ) : (
+          <>
+            <section class="mt-14" aria-labelledby="titulo-recientes">
+              <h2 id="titulo-recientes" class="text-2xl font-bold text-gray-900 md:text-3xl">
+                Lo más reciente
+              </h2>
+
+              <article class="group relative mt-6 grid overflow-hidden rounded-xl border border-base-300 bg-white transition hover:shadow-lg md:grid-cols-[auto_1fr]">
+                {latestThumbnail && (
+                  <div
+                    class:list={[
+                      "relative overflow-hidden bg-black",
+                      latestThumbnail.vertical ? "aspect-[4/3] md:aspect-[9/16] md:w-64" : "aspect-video md:w-96",
+                    ]}>
+                    <img
+                      src={latestThumbnail.src}
+                      alt=""
+                      loading="eager"
+                      decoding="async"
+                      class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    {latest.data.video && (
+                      <span class="absolute inset-0 m-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/90 text-white shadow-lg" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" class="ml-1 h-7 w-7" fill="currentColor">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
+                )}
+                <div class="flex flex-col justify-center p-6 md:p-10">
+                  <p class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <time datetime={isoDate(latest.data.date)} class="font-semibold text-primary">
+                      {formatDate(latest.data.date)}
+                    </time>
+                    <span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-sm font-medium text-primary">
+                      {CATEGORIES[latest.data.category]}
+                    </span>
+                  </p>
+                  <h3 class="mt-3 text-2xl font-bold leading-snug text-gray-900 md:text-3xl">
+                    <a href={latest.url} class="after:absolute after:inset-0 group-hover:text-primary">
+                      {latest.data.title}
+                    </a>
+                  </h3>
+                  <p class="mt-3 text-lg leading-relaxed text-gray-600">{latest.data.summary}</p>
+                  <span class="mt-6 font-semibold text-primary" aria-hidden="true">Ver actividad →</span>
+                </div>
+              </article>
+
+              {recent.length > 0 && (
+                <div class="mt-4 grid gap-4">
+                  {recent.map((entry) => <Card entry={entry} />)}
+                </div>
+              )}
+            </section>
+
+            <nav class="mt-20" aria-labelledby="titulo-archivo">
+              <h2 id="titulo-archivo" class="text-2xl font-bold text-gray-900 md:text-3xl">
+                Archivo por mes
+              </h2>
+              {years.map((year) => (
+                <section class="mt-8">
+                  <h3 class="flex items-center gap-4 text-lg font-semibold text-primary">
+                    {year}
+                    <span class="h-px flex-1 bg-base-300" aria-hidden="true" />
+                  </h3>
+                  <ul class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    {months
+                      .filter((m) => m.year === year)
+                      .reverse()
+                      .map(({ month, entries }) => {
+                        const thumbnails = entries
+                          .map((e) => thumbnailOf(e.data))
+                          .filter((m) => m !== undefined)
+                          .slice(0, 3);
+                        const categories = [...new Set(entries.map((e) => e.data.category))];
+                        return (
+                          <li>
+                            <a
+                              href={monthUrl(section, year, month)}
+                              class="group block overflow-hidden rounded-xl border border-base-300 bg-white transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg">
+                              {thumbnails.length > 0 && (
+                                <div class="flex h-40 items-center justify-center gap-2 bg-blue-950 py-3">
+                                  {thumbnails.map((m) => (
+                                    <img
+                                      src={m.src}
+                                      alt=""
+                                      loading="lazy"
+                                      decoding="async"
+                                      class:list={[
+                                        "h-full rounded object-cover transition duration-300 group-hover:scale-[1.03]",
+                                        m.vertical ? "aspect-[9/16]" : "aspect-square",
+                                      ]}
+                                    />
+                                  ))}
+                                </div>
+                              )}
+                              <div class="p-4">
+                                <p class="flex items-baseline justify-between gap-2">
+                                  <span class="text-xl font-bold text-gray-900 group-hover:text-primary">
+                                    {capitalize(month)}
+                                  </span>
+                                  <span class="text-sm text-gray-600">
+                                    {entries.length} {entries.length === 1 ? "actividad" : "actividades"}
+                                  </span>
+                                </p>
+                                <p class="mt-3 flex flex-wrap gap-1.5">
+                                  {categories.map((category) => (
+                                    <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                                      {CATEGORIES[category]}
+                                    </span>
+                                  ))}
+                                </p>
+                              </div>
+                            </a>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </section>
+              ))}
+            </nav>
+          </>
+        )
+      }
+    </div>
+  </Container>
+</Layout>

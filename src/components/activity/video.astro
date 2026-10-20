@@ -1,0 +1,60 @@
+---
+import { videoThumbnail, playerUrl, type Video } from "@/lib/activity";
+
+interface Props {
+  video: Video;
+  title: string;
+}
+
+const { video, title } = Astro.props;
+const vertical = video.format === "vertical";
+---
+
+<div
+  class:list={[
+    "relative mx-auto overflow-hidden rounded-lg bg-black",
+    vertical ? "aspect-[9/16] max-w-sm" : "aspect-video w-full",
+  ]}
+  data-video
+  data-src={playerUrl(video)}
+  data-title={title}>
+  <button
+    type="button"
+    class="group absolute inset-0 h-full w-full cursor-pointer"
+    aria-label={`Reproducir video: ${title}`}>
+    <img
+      src={videoThumbnail(video)}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover"
+    />
+    <span
+      class="absolute inset-0 m-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/90 text-white shadow-lg transition group-hover:scale-110 group-focus-visible:scale-110"
+      aria-hidden="true">
+      <svg viewBox="0 0 24 24" class="ml-1 h-8 w-8" fill="currentColor">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </span>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-video]").forEach((container) => {
+    container.querySelector("button")?.addEventListener(
+      "click",
+      () => {
+        const iframe = document.createElement("iframe");
+        iframe.src = container.dataset.src!;
+        iframe.title = container.dataset.title!;
+        iframe.allow =
+          "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+        iframe.allowFullscreen = true;
+        iframe.className = "absolute inset-0 h-full w-full";
+        container.replaceChildren(iframe);
+        iframe.focus();
+      },
+      { once: true }
+    );
+  });
+</script>
