@@ -7,7 +7,7 @@ summary: Lorem
 location: Tegucigalpa
 video:
   format: horizontal
-  url: https://www.youtube.com/watch?v=1ott9jRkV40
+  url: ""
 photos:
   - src: https://res.cloudinary.com/xm0xqj5v/image/upload/v1792536110/Screenshot_2025-09-26_at_5.16.34_PM.png
     alt: Foto - TEST
