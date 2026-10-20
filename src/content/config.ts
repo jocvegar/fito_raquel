@@ -14,8 +14,9 @@ const proposalCollection = defineCollection({
 const optional = <T extends z.ZodTypeAny>(schema: T) =>
   z.preprocess((value) => (value === "" || value === null ? undefined : value), schema.optional());
 
-const videoId = (value: string) =>
-  value.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/)?.[1] ?? value.trim();
+const youtubeId = (value: string) =>
+  value.trim().match(/(?:youtu\.be\/|v=|shorts\/|embed\/|live\/)([\w-]{11})/)?.[1] ??
+  value.trim().match(/^[\w-]{11}$/)?.[0];
 
 const activityCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/activities" }),
@@ -27,16 +28,13 @@ const activityCollection = defineCollection({
     summary: z.string(),
     location: optional(z.string()),
     video: z.preprocess(
-      (value) => ((value as { id?: string } | undefined)?.id ? value : undefined),
+      (value) => ((value as { url?: string } | undefined)?.url ? value : undefined),
       z
         .object({
-          provider: z.enum(["youtube", "cloudflare"]).default("youtube"),
-          id: z.string(),
+          url: z.string().refine((url) => youtubeId(url), "No es un link de YouTube válido"),
           format: z.enum(["vertical", "horizontal"]).default("vertical"),
         })
-        .transform((video) =>
-          video.provider === "youtube" ? { ...video, id: videoId(video.id) } : video
-        )
+        .transform(({ url, format }) => ({ id: youtubeId(url)!, format }))
         .optional()
     ),
     photos: z

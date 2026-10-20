@@ -88,34 +88,15 @@ export const imageSrcset = (src: string, widths: number[]) =>
   widths.map((width) => `${imageUrl(src, width)} ${width}w`).join(", ");
 
 export type Video = {
-  provider: "youtube" | "cloudflare";
   id: string;
   format: "vertical" | "horizontal";
 };
 
-function cloudflareDomain() {
-  const code = import.meta.env.PUBLIC_CLOUDFLARE_STREAM_CUSTOMER_CODE;
-  if (!code) {
-    throw new Error(
-      "Hay un video de Cloudflare Stream pero falta PUBLIC_CLOUDFLARE_STREAM_CUSTOMER_CODE."
-    );
-  }
-  return `https://customer-${code}.cloudflarestream.com`;
-}
+export const videoThumbnail = (video: Video) =>
+  `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
 
-export function videoThumbnail(video: Video) {
-  if (video.provider === "cloudflare") {
-    return `${cloudflareDomain()}/${video.id}/thumbnails/thumbnail.jpg?height=720`;
-  }
-  return `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
-}
-
-export function playerUrl(video: Video) {
-  if (video.provider === "cloudflare") {
-    return `${cloudflareDomain()}/${video.id}/iframe?autoplay=true`;
-  }
-  return `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&playsinline=1&rel=0`;
-}
+export const playerUrl = (video: Video) =>
+  `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&playsinline=1&rel=0`;
 
 export function thumbnailOf(data: { photos: { src: string }[]; video?: Video }, width = 400) {
   const photo = data.photos[0];

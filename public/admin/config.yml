@@ -10,12 +10,13 @@ locale: es
 
 media_folder: public/uploads
 public_folder: /uploads
-# media_library:
-#   name: cloudinary
-#   config:
-#     cloud_name: TU_CLOUD_NAME
-#     api_key: TU_API_KEY
-#   output_filename_only: false
+media_library:
+  name: cloudinary
+  output_filename_only: false
+  use_transformations: false
+  config:
+    cloud_name: xm0xqj5v
+    api_key: "649191449471949"
 
 collections:
   - name: activities
@@ -78,18 +79,11 @@ collections:
         required: false
         collapsed: true
         fields:
-          - label: Plataforma
-            name: provider
-            widget: select
-            default: youtube
-            options:
-              - { label: YouTube, value: youtube }
-              - { label: Cloudflare Stream, value: cloudflare }
-          - label: Video
-            name: id
+          - label: Link de YouTube
+            name: url
             widget: string
             required: false
-            hint: "YouTube: pegá el link del video o del Short. Cloudflare Stream: el ID del video."
+            hint: "Pegá el link del video o del Short."
           - label: Formato
             name: format
             widget: select
