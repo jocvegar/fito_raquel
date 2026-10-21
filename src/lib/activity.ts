@@ -4,10 +4,10 @@ export const SECTIONS = {
     description:
       "Registro cronológico del trabajo de Fito Ráquel en el Congreso Nacional, período 2026-2030.",
   },
-  "la-gorra-azul": {
-    title: "La Gorra Azul",
+  "accion-social": {
+    title: "Acción Social",
     description:
-      "Acción social, trabajo en territorio y apoyo comunitario de Fito Ráquel.",
+      "Trabajo en territorio y apoyo comunitario de Fito Ráquel.",
   },
 } as const;
 
@@ -25,7 +25,7 @@ export const CATEGORIES = {
   "reunion-sectorial": "Reunión con sectores",
   socializacion: "Socialización",
   gestion: "Gestión",
-  "accion-social": "Acción social",
+  "entrega-de-ayuda": "Entrega de ayuda",
   territorio: "Visita en territorio",
   "apoyo-comunitario": "Apoyo comunitario",
 } as const;

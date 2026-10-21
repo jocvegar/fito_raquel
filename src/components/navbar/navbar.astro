@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 import logo from "@/assets/logo.png"
 import { entriesOf } from "@/lib/activity-data";
 
-const hasGorraAzul = (await entriesOf("la-gorra-azul")).length > 0;
+const hasSocialAction = (await entriesOf("accion-social")).length > 0;
 
 const menuitems = [
    {
@@ -17,11 +17,11 @@ const menuitems = [
     title: "Labor Legislativa",
     path: "/labor-legislativa/",
   },
-  ...(hasGorraAzul
+  ...(hasSocialAction
     ? [
         {
-          title: "La Gorra Azul",
-          path: "/la-gorra-azul/",
+          title: "Acción Social",
+          path: "/accion-social/",
         },
       ]
     : []),

@@ -31,7 +31,7 @@ collections:
     sortable_fields: ["date", "title"]
     view_filters:
       - { label: Labor Legislativa, field: section, pattern: labor-legislativa }
-      - { label: La Gorra Azul, field: section, pattern: la-gorra-azul }
+      - { label: Acción Social, field: section, pattern: accion-social }
       - { label: Borradores, field: draft, pattern: true }
     fields:
       - label: Fecha
@@ -47,15 +47,15 @@ collections:
         default: labor-legislativa
         options:
           - { label: Labor Legislativa, value: labor-legislativa }
-          - { label: La Gorra Azul, value: la-gorra-azul }
+          - { label: Acción Social, value: accion-social }
       - label: Categoría
         name: category
         widget: select
         options:
-          - { label: Acción social, value: accion-social }
           - { label: Actividad de comisión, value: comision }
           - { label: Apoyo comunitario, value: apoyo-comunitario }
           - { label: Comparecencia, value: comparecencia }
+          - { label: Entrega de ayuda, value: entrega-de-ayuda }
           - { label: Gestión, value: gestion }
           - { label: Iniciativa, value: iniciativa }
           - { label: Institucional, value: institucional }
@@ -108,11 +108,6 @@ collections:
         required: false
         buttons: [bold, italic, link, bulleted-list, numbered-list]
         editor_components: []
-      - label: Fuente oficial
-        name: source
-        widget: string
-        required: false
-        hint: "Link a acta, transmisión oficial o nota de prensa, si existe."
       - label: Redes (referencia interna, no se muestra)
         name: social
         widget: object

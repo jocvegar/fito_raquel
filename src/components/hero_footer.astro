@@ -3,7 +3,7 @@ import { Picture } from "astro:assets";
 import background from "@/assets/hero_footer.jpeg";
 import { entriesOf } from "@/lib/activity-data";
 
-const hasGorraAzul = (await entriesOf("la-gorra-azul")).length > 0;
+const hasSocialAction = (await entriesOf("accion-social")).length > 0;
 ---
 
 <section class="relative isolate overflow-hidden">
@@ -28,9 +28,9 @@ const hasGorraAzul = (await entriesOf("la-gorra-azul")).length > 0;
         Ver Labor Legislativa
       </a>
       {
-        hasGorraAzul && (
-          <a href="/la-gorra-azul/" class="btn btn-outline rounded-full border-white text-white hover:bg-white hover:text-blue-950 md:btn-lg">
-            Ver La Gorra Azul
+        hasSocialAction && (
+          <a href="/accion-social/" class="btn btn-outline rounded-full border-white text-white hover:bg-white hover:text-blue-950 md:btn-lg">
+            Ver Acción Social
           </a>
         )
       }
