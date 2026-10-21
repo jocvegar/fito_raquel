@@ -6,30 +6,40 @@ interface Props {
 }
 
 const { photos } = Astro.props;
+const single = photos.length === 1;
 ---
 
 {
   photos.length > 0 && (
     <div data-gallery>
-      <ul class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+      <ul class="flex flex-wrap justify-center gap-2">
         {photos.map((photo, index) => (
-          <li>
+          <li
+            class:list={[
+              single ? "w-full" : "w-[calc(50%-0.25rem)] sm:w-[calc(33.333%-0.34rem)]",
+            ]}>
             <button
               type="button"
-              class="block aspect-square w-full cursor-zoom-in overflow-hidden rounded-md bg-base-300"
+              class:list={[
+                "block cursor-zoom-in overflow-hidden rounded-md",
+                single ? "mx-auto w-fit" : "aspect-square w-full bg-base-300",
+              ]}
               data-index={index}
               data-src={imageUrl(photo.src, 1600)}
               data-alt={photo.alt}
               data-credit={photo.credit ?? ""}
               aria-label={`Ampliar foto: ${photo.alt}`}>
               <img
-                src={imageUrl(photo.src, 400)}
-                srcset={imageSrcset(photo.src, [400, 800])}
-                sizes="(min-width: 640px) 250px, 50vw"
+                src={imageUrl(photo.src, single ? 800 : 400)}
+                srcset={imageSrcset(photo.src, single ? [800, 1200, 1600] : [400, 800])}
+                sizes={single ? "(min-width: 768px) 720px, 100vw" : "(min-width: 640px) 250px, 50vw"}
                 alt={photo.alt}
                 loading="lazy"
                 decoding="async"
-                class="h-full w-full object-cover transition hover:scale-105"
+                class:list={[
+                  "transition hover:scale-105",
+                  single ? "mx-auto max-h-[70vh] w-auto object-contain" : "h-full w-full object-cover",
+                ]}
               />
             </button>
           </li>

@@ -1,4 +1,3 @@
-
 backend:
   name: github
   repo: jocvegar/fito_raquel
@@ -20,7 +19,7 @@ media_library:
 
 collections:
   - name: activities
-    label: Bitácora
+    label: Contenido
     label_singular: Actividad
     folder: src/content/activities
     create: true
@@ -53,20 +52,20 @@ collections:
         name: category
         widget: select
         options:
-          - { label: Institucional, value: institucional }
-          - { label: Sesión del pleno, value: sesion }
-          - { label: Actividad de comisión, value: comision }
-          - { label: Moción, value: mocion }
-          - { label: Proyecto de ley, value: proyecto-de-ley }
-          - { label: Iniciativa, value: iniciativa }
-          - { label: Proyecto aprobado, value: proyecto-aprobado }
-          - { label: Comparecencia, value: comparecencia }
-          - { label: Reunión con sectores, value: reunion-sectorial }
-          - { label: Socialización, value: socializacion }
-          - { label: Gestión, value: gestion }
           - { label: Acción social, value: accion-social }
-          - { label: Visita en territorio, value: territorio }
+          - { label: Actividad de comisión, value: comision }
           - { label: Apoyo comunitario, value: apoyo-comunitario }
+          - { label: Comparecencia, value: comparecencia }
+          - { label: Gestión, value: gestion }
+          - { label: Iniciativa, value: iniciativa }
+          - { label: Institucional, value: institucional }
+          - { label: Moción, value: mocion }
+          - { label: Proyecto aprobado, value: proyecto-aprobado }
+          - { label: Proyecto de ley, value: proyecto-de-ley }
+          - { label: Reunión con sectores, value: reunion-sectorial }
+          - { label: Sesión del pleno, value: sesion }
+          - { label: Socialización, value: socializacion }
+          - { label: Visita en territorio, value: territorio }
       - { label: Titular, name: title, widget: string }
       - label: Resumen
         name: summary
@@ -120,7 +119,12 @@ collections:
         required: false
         collapsed: true
         fields:
-          - { label: Instagram, name: instagram, widget: string, required: false }
+          - {
+              label: Instagram,
+              name: instagram,
+              widget: string,
+              required: false,
+            }
           - { label: Facebook, name: facebook, widget: string, required: false }
       - { label: Destacado, name: featured, widget: boolean, default: false }
       - label: Borrador

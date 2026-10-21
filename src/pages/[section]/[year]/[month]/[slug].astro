@@ -83,11 +83,11 @@ const shareImage = data.photos[0]
 
       {data.video && <div class="mt-8"><Video video={data.video} title={data.title} /></div>}
 
+      {data.photos.length > 0 && <div class="mt-8"><Gallery photos={data.photos} /></div>}
+
       <div class="prose prose-lg mt-8 max-w-none">
         <Content />
       </div>
-
-      {data.photos.length > 0 && <div class="mt-8"><Gallery photos={data.photos} /></div>}
 
       {
         data.source && (
